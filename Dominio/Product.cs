@@ -8,7 +8,7 @@ namespace ERP.Dominio
 {
     class Product
     {
-        //------------------------------------Attributes--------------------------------
+        //------------------------------------Attributes----------------------------------
         private int idProduct { get; set; }
         private String name { get; set; }
         private int refComposition { get; set; }
