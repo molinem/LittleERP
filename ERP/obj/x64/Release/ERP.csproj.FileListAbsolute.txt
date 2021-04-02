@@ -1,0 +1,15 @@
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\bin\x64\Release\ERP.exe.config
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\bin\x64\Release\ERP.exe
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\bin\x64\Release\ERP.pdb
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.csprojAssemblyReference.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\Presentacion\MainWindow.g.cs
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\App.g.cs
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP_MarkupCompile.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP_MarkupCompile.lref
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\Presentacion\MainWindow.baml
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.g.resources
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.Properties.Resources.resources
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.csproj.GenerateResource.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.csproj.CoreCompileInputs.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.exe
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.pdb

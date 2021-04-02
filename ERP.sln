@@ -3,23 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP", "ERP.csproj", "{BE5F53A7-15CD-4D6D-8C74-89B145639A6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERP", "ERP\ERP.csproj", "{A66B3A02-0B00-4750-A262-CCE6DCB15E22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BE5F53A7-15CD-4D6D-8C74-89B145639A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE5F53A7-15CD-4D6D-8C74-89B145639A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE5F53A7-15CD-4D6D-8C74-89B145639A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE5F53A7-15CD-4D6D-8C74-89B145639A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Debug|x64.ActiveCfg = Debug|x64
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Debug|x64.Build.0 = Debug|x64
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Release|x64.ActiveCfg = Release|x64
+		{A66B3A02-0B00-4750-A262-CCE6DCB15E22}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {310713F6-8B60-4B18-8DC5-BF970F7CD705}
+		SolutionGuid = {1D9C79E2-ABFB-4819-AD33-053C2744C44D}
 	EndGlobalSection
 EndGlobal

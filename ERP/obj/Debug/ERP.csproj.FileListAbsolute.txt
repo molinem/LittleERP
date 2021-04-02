@@ -1,0 +1,15 @@
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\bin\Debug\ERP.exe.config
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\bin\Debug\ERP.exe
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\bin\Debug\ERP.pdb
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP.csprojAssemblyReference.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\Presentacion\MainWindow.g.cs
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\App.g.cs
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP_MarkupCompile.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP_MarkupCompile.lref
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\Presentacion\MainWindow.baml
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP.g.resources
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP.Properties.Resources.resources
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP.csproj.GenerateResource.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP.csproj.CoreCompileInputs.cache
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP.exe
+D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\Debug\ERP.pdb
