@@ -21,9 +21,19 @@ namespace ERP.Dominio
         private static ManagerCustomer g;
 
         //------------------------------------Constructors--------------------------------
-        public Customer(int idCustomer, string name, string surname, string address, int phone_number, string email, int zip_code)
+        public Customer(int idCustomer, String name, String surname, String address, int phone_number, String email, int zip_code)
         {
             this.idCustomer = idCustomer;
+            this.name = name;
+            this.surname = surname;
+            this.address = address;
+            this.phone_number = phone_number;
+            this.email = email;
+            this.zip_code = zip_code;
+        }
+
+        public Customer(String name, String surname, String address, int phone_number, String email, int zip_code)
+        {
             this.name = name;
             this.surname = surname;
             this.address = address;

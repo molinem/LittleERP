@@ -1,0 +1,32 @@
+﻿<Window x:Class="ERP.Presentacion.New_Customer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ERP.Presentacion"
+        mc:Ignorable="d"
+        Title="Nuevo Cliente" Height="483.842" Width="847.192" WindowStartupLocation="CenterScreen" Background="#FFB0D2EE" ResizeMode="NoResize">
+    <Grid Margin="0,0,-6,6">
+        <Viewbox Grid.Row="0" Grid.Column="0" MaxHeight="100" Margin="0,0,6,319">
+            <Label x:Name="txtTitulo_Copy" Content="    NUEVO CLIENTE" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Width="700"/>
+        </Viewbox>
+        <Label x:Name="lblName" Content="Nombre :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="28,154,735,259" Height="36" Width="84"/>
+        <TextBox Grid.Row="0" x:Name="txtName" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="233" MaxHeight="40" Margin="126,136,435,241"/>
+        <Label x:Name="lblAddress" Content="Dirección :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="26,220,721,197" Height="32" Width="100"/>
+        <TextBox Grid.Row="0" x:Name="txtAddress" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="233" MaxHeight="40" Margin="125,193,434,168"/>
+        <Label x:Name="lblEmail" Content="Email :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="28,288,735,129" Height="32" Width="84"/>
+        <TextBox Grid.Row="0" x:Name="txtEmail" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="233" MaxHeight="40" Margin="125,260,434,101"/>
+        <Label x:Name="lbSurname" Content="Apellido :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="408,150,300,255" Height="35" Width="98"/>
+        <TextBox Grid.Row="0" x:Name="txtSurname" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="233" MaxHeight="40" Margin="538,136,35,240"/>
+        <Label x:Name="lblPhone" Content="Móvil :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="408,216,300,189" Height="35" Width="98" RenderTransformOrigin="0.968,0.591"/>
+        <TextBox Grid.Row="0" x:Name="txtPhone" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="233" MaxHeight="40" Margin="538,193,35,176"/>
+        <Label x:Name="lblCP" Content="Código Postal :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="424,284,281,129" Height="36" Width="132" RenderTransformOrigin="0.968,0.591"/>
+        <TextBox Grid.Row="0" x:Name="txtCP" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="135" MaxHeight="40" Margin="573,260,129,113" IsEnabled="False" Text="2"/>
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="36,342,741,36" Grid.Row="0" Grid.Column="0" Background="Transparent" Click="btnNewCustomerDB_Click" Width="70" Height="71">
+            <Image Source="/Resources/add.png" RenderTransformOrigin="3.246,3.152" />
+        </Button>
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="727,269,44,120" Grid.Row="0" Grid.Column="0" Background="Transparent" Click="btnSelectCP_Click" Height="60" Width="76">
+            <Image Source="/Resources/Entypo_d83d(0)_64.png" RenderTransformOrigin="7.019,-1.093" />
+        </Button>
+    </Grid>
+</Window>

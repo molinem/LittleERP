@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ERP.Dominio.Manager
 {
@@ -32,7 +33,7 @@ namespace ERP.Dominio.Manager
 
             connection.Open();
 
-            OracleCommand cmd = new OracleCommand("SELECT C.IDCUSTOMER,C.NAME,C.SURNAME,C.ADDRESS,C.PHONE,C.EMAIL,S.STATE FROM CUSTOMERS C, ZIPCODESCITIES Z, STATES S WHERE C.REFZIPCODESCITIES = Z.IDZIPCODESCITIES AND Z.REFSTATE = S.IDSTATE AND C.DELETED=0", connection);
+            OracleCommand cmd = new OracleCommand("SELECT C.IDCUSTOMER,C.NAME,C.SURNAME,C.ADDRESS,C.PHONE,C.EMAIL,S.STATE FROM CUSTOMERS C, ZIPCODESCITIES Z, STATES S WHERE C.REFZIPCODESCITIES = Z.IDZIPCODESCITIES AND Z.REFSTATE = S.IDSTATE AND C.DELETED=0 ORDER BY C.IDCUSTOMER", connection);
             cmd.ExecuteNonQuery();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             da.Fill(data,"customers");
@@ -79,13 +80,12 @@ namespace ERP.Dominio.Manager
 
             connection.Open();
 
-            OracleCommand cmd = new OracleCommand("INSERT INTO CUSTOMERS(IDCUSTOMER,NAME,SURNAME,ADDRESS,PHONE,EMAIL,DELETED,REFZIPCODESCITIES) VALUES(ID_CUSTOMER.NEXTVAL,:name,:surname,:address,:phone,:email,:deleted,:zipCode)", connection);
+            OracleCommand cmd = new OracleCommand("INSERT INTO CUSTOMERS VALUES(ID_CUSTOMER.NEXTVAL,:name,:surname,:address,:phone,:email,0,:zipCode)", connection);
             cmd.Parameters.Add(new OracleParameter("name", c.getName()));
             cmd.Parameters.Add(new OracleParameter("surname", c.getSurname()));
             cmd.Parameters.Add(new OracleParameter("address", c.getAddress()));
             cmd.Parameters.Add(new OracleParameter("phone", c.getPhoneNumber()));
             cmd.Parameters.Add(new OracleParameter("email", c.getEmail()));
-            cmd.Parameters.Add(new OracleParameter("deleted", 0));
             cmd.Parameters.Add(new OracleParameter("zipCode", c.getZipCode()));
 
             cmd.ExecuteNonQuery();
@@ -132,6 +132,14 @@ namespace ERP.Dominio.Manager
             cmd.ExecuteNonQuery();
 
             connection.Close();
+        }
+
+        public void startDataGrid(DataGrid dgClientes)
+        {
+            //Load Clients that not deleted
+            Customer.readAll();
+            DataTable dtClientes = Customer.manager().obtainCustomers();
+            dgClientes.ItemsSource = dtClientes.DefaultView;
         }
     }
 }
