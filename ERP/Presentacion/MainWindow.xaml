@@ -69,7 +69,7 @@
                             <TextBox Grid.Row="0" Grid.Column="1" Name="txtFiltroNombre" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="13" Width="345" MaxHeight="40" Margin="5,10,10,0"></TextBox>
                             <TextBox Grid.Row="1" Grid.Column="1" Name="txtFiltroApellidos" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Width="345" MaxHeight="40" Margin="5,8,10,2"></TextBox>
                         </Grid>
-                        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Name="dgClientes" AutoGenerateColumns="False"
+                        <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="dgCustomer" AutoGenerateColumns="False"
                                 CanUserAddRows="False"
                                 CanUserReorderColumns="False"
                                 CanUserSortColumns="False"
@@ -85,6 +85,7 @@
                                 ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="5,5,5,0" CanUserResizeRows="False" SelectionMode="Single" SelectionChanged="dgClientes_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="IdCliente" Binding="{Binding IDCUSTOMER}" />
+                                <DataGridTextColumn Header="DNI" Binding="{Binding DNI}" />
                                 <DataGridTextColumn Header="Nombre" Binding="{Binding NAME}"/>
                                 <DataGridTextColumn Header="Apellidos" Binding="{Binding SURNAME}"/>
                                 <DataGridTextColumn Header="Dirección" Binding="{Binding ADDRESS}"/>

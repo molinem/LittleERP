@@ -28,19 +28,17 @@ namespace ERP
         {
             InitializeComponent();
             //Load Clients that not deleted
-            Customer.manager().startDataGrid(dgClientes);
+            Customer.manager().startDataGridCustomers(dgCustomer);
         }
-
-        
         
         private void btnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            New_Customer cc = new New_Customer();
+            //Option + for create new customer
+            New_Customer cc = new New_Customer('+');
             cc.ShowDialog();
             //Refresh DataGrid
-            Customer.manager().startDataGrid(dgClientes);
+            Customer.manager().startDataGridCustomers(dgCustomer);
         }
-
 
         private void btnBusqueda_Click(object sender, RoutedEventArgs e)
         {
@@ -50,8 +48,7 @@ namespace ERP
         private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
            
-            DataRowView row = dgClientes.SelectedItem as DataRowView;
-            MessageBox.Show(row.Row.ItemArray[0].ToString());
+            DataRowView row = dgCustomer.SelectedItem as DataRowView;
             Console.WriteLine("------------------- " + row.ToString());
         }
     }

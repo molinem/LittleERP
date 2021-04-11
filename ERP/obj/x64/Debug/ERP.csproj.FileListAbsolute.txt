@@ -23,11 +23,13 @@ C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\r
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\bin\x64\Debug\Oracle.ManagedDataAccess.dll
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\MainWindow.g.cs
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\New_Customer.g.cs
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\Zip_Code.g.cs
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\App.g.cs
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP_MarkupCompile.cache
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP_MarkupCompile.lref
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\MainWindow.baml
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\New_Customer.baml
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\Zip_Code.baml
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP.g.resources
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP.Properties.Resources.resources
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP.csproj.GenerateResource.cache
@@ -35,6 +37,3 @@ C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\r
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP.csproj.CopyComplete
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP.exe
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP.pdb
-C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\ERP.csprojAssemblyReference.cache
-C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\Zip_Code.g.cs
-C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Debug\Presentacion\Zip_Code.baml

@@ -36,7 +36,7 @@
                     <Image Source="/ERP;component/Resources/Entypo_d83d(0)_64.png" />
                 </Button>
             </Grid>
-            <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="dgCodigoPostal" AutoGenerateColumns="False"
+            <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="dgZipCode" AutoGenerateColumns="False"
                 CanUserAddRows="False"
                 CanUserReorderColumns="False"
                 CanUserSortColumns="False"

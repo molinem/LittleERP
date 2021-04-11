@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ERP.Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,12 @@ namespace ERP.Presentacion
         public Zip_Code()
         {
             InitializeComponent();
+            Customer.manager().startDataGridZipCodes(dgZipCode);
         }
 
         private void dgCodigoPostal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var row = dgCodigoPostal.SelectedItem;
+            var row = dgZipCode.SelectedItem;
             Console.WriteLine("------------------- "+row.ToString());
         }
     }
