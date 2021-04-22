@@ -104,17 +104,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentacion\Zip_Code.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presentacion\New_Customer.xaml.cs">
       <DependentUpon>New_Customer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\Zip_Code.xaml.cs">
-      <DependentUpon>Zip_Code.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -150,6 +143,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo_d83d%280%29_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\not_selected.png" />
+    <Resource Include="Resources\selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

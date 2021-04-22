@@ -8,8 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/add.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/modify.png")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/remove.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/not_selected.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/selected.png")]
 
 

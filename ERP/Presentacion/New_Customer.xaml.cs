@@ -24,11 +24,13 @@ namespace ERP.Presentacion
     /// </summary>
     public partial class New_Customer : Window
     {
-        private char option;
+        private char optionSelected;
         public New_Customer(char option)
         {
             InitializeComponent();
+            optionSelected = option;
 
+            //Initial configuration
             txtName.MaxLength = 30;
             txtSurname.MaxLength = 20;
             txtAddress.MaxLength = 30;
@@ -36,12 +38,20 @@ namespace ERP.Presentacion
             txtDni.MaxLength = 9;
             txtEmail.MaxLength = 20;
 
-            Customer.manager().refillComboRegion(cboRegion);
+
+            if (option == '+')
+            {
+                Customer.manager().refillComboRegion(cboRegion);
+                Customer.manager().startListTags(listTagsOriginal);
+            }
+            
+
+            
         }
 
         private void btnNewCustomerDB_Click(object sender, RoutedEventArgs e)
         {
-            if (txtDni.Text.ToString().Equals("") || txtAddress.Text.ToString().Equals("") || txtEmail.Text.ToString().Equals("") || txtName.Text.ToString().Equals("") || txtPhone.Text.ToString().Equals("") || txtSurname.Text.ToString().Equals(""))
+            if (txtDni.Text.ToString().Equals("") || txtAddress.Text.ToString().Equals("") || txtEmail.Text.ToString().Equals("") || txtName.Text.ToString().Equals("") || txtPhone.Text.ToString().Equals("") || txtSurname.Text.ToString().Equals("") || listTagsSelected.Items.IsEmpty)
             {
                 MessageBox.Show("Debes rellenar todos los campos.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -122,11 +132,14 @@ namespace ERP.Presentacion
                     String email = txtEmail.Text;
 
                     //Insert or modify
-                    if (option == '+')
+                    if (optionSelected == '+')
                     {
-                        //Insert
+                        //Insert new customer
                         Customer c = new Customer(name, DNI, surname, address, phone, email, id);
                         Customer.manager().createCustomer(c);
+
+                        //Obtain all selected tags and insert to DB
+                        Customer.manager().add_tags_customer(listTagsSelected.Items);
                     }
                     else
                     {
@@ -145,8 +158,7 @@ namespace ERP.Presentacion
 
         private void btnSelectCP_Click(object sender, RoutedEventArgs e)
         {
-            Zip_Code z = new Zip_Code();
-            z.ShowDialog();
+            
         }
 
         
@@ -226,6 +238,25 @@ namespace ERP.Presentacion
                 cboZipCode.IsEnabled = false;
             }
         }
+
+        private void btnSelected_Click(object sender, RoutedEventArgs e)
+        {
+            if (listTagsOriginal.SelectedItem != null)
+            {
+                listTagsSelected.Items.Add(listTagsOriginal.SelectedItem);
+                listTagsOriginal.Items.Remove(listTagsOriginal.SelectedItem);
+            }
+        }
+
+        private void btnNotSelected_Click(object sender, RoutedEventArgs e)
+        {
+            if (listTagsSelected.SelectedItem != null)
+            {
+                listTagsOriginal.Items.Add(listTagsSelected.SelectedItem);
+                listTagsSelected.Items.Remove(listTagsSelected.SelectedItem);
+            }
+        }
+
 
         public bool correctDni()
         {

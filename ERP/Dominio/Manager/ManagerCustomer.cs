@@ -20,7 +20,7 @@ namespace ERP.Dominio.Manager
             table = new DataTable();
         }
 
-        public DataTable obtainCustomers()
+        public DataTable obtainData()
         {
             return table;
         }
@@ -191,17 +191,11 @@ namespace ERP.Dominio.Manager
         public void startDataGridCustomers(DataGrid dgCustomers)
         {
             readAllCustomers();
-            DataTable dtClientes = obtainCustomers();
+            DataTable dtClientes = obtainData();
             dgCustomers.ItemsSource = dtClientes.DefaultView;
         }
 
-        public void startDataGridZipCodes(DataGrid dgZipCodes)
-        {
-            readAllZipCodes();
-            DataTable dtClientes = obtainCustomers();
-            dgZipCodes.ItemsSource = dtClientes.DefaultView;
-        }
-
+        //--------------------------------------------------------------------ComboBox----------------------------------------------------------------------------------
         public void refillComboRegion(ComboBox combo)
         {
             String sql = "SELECT IDREGION, REGION FROM REGIONS ORDER BY IDREGION";
@@ -240,5 +234,120 @@ namespace ERP.Dominio.Manager
 
             return id;
         }
+
+
+        //--------------------------------------------------------------------TAGS----------------------------------------------------------------------------------
+        public void readAllTags()
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle allTags = new ConnectOracle();
+            connection = allTags.getConnection();
+
+            connection.Open();
+
+            OracleCommand cmd = new OracleCommand("SELECT NAME FROM TAGS ORDER BY IDTAG", connection);
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            da.Fill(data, "tags");
+
+            table = data.Tables["tags"];
+            connection.Close();
+        }
+
+        public void createTagCustomer(int refIdTag, int refIdCustomer)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle createTagCustomer = new ConnectOracle();
+            connection = createTagCustomer.getConnection();
+
+            connection.Open();
+
+            OracleCommand cmd = new OracleCommand("INSERT INTO TAGS_CUSTOMERS VALUES(:idtag,:idCustomer)", connection);
+            cmd.Parameters.Add(new OracleParameter("idtag", refIdTag));
+            cmd.Parameters.Add(new OracleParameter("idCustomer", refIdCustomer));
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        public void startListTags(ListBox listTags)
+        {
+            readAllTags();
+            DataTable dtTags = obtainData();
+
+            foreach (DataRow row in dtTags.Rows)
+            {
+                if (!listTags.Items.Contains(row["NAME"]))
+                {
+                    listTags.Items.Add(row["NAME"]);
+                }
+            }
+        }
+
+        public int obtainTagID(String nameTag)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle searchEspecifyCustomer = new ConnectOracle();
+            connection = searchEspecifyCustomer.getConnection();
+
+            connection.Open();
+
+            OracleCommand cmd = new OracleCommand("SELECT IDTAG FROM TAGS WHERE NAME=:nameTag", connection);
+            cmd.Parameters.Add(new OracleParameter("nameTag", nameTag));
+
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            da.Fill(data, "tags");
+
+            connection.Close();
+            table = data.Tables["tags"];
+
+            //-- Obtain id tag if we have the name
+            DataRow row = table.Rows[0];
+            int idTag = Convert.ToInt32(row["IDTAG"]);
+            return idTag;
+        }
+
+            public void add_tags_customer(ItemCollection it)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle tags = new ConnectOracle();
+            connection = tags.getConnection();
+
+            connection.Open();
+
+            OracleCommand cmd = new OracleCommand("SELECT MAX(IDCUSTOMER) AS ID FROM CUSTOMERS", connection);
+
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            da.Fill(data, "customers");
+
+            connection.Close();
+            table = data.Tables["customers"];
+
+            //Obtain last id inserted (customers)
+            DataRow row = table.Rows[0];
+            int customerID = Convert.ToInt32(row["ID"]);
+
+            //-------------Procedure TAGS--------------------
+            String tagSelected;
+            int idTagSelected;
+            //Obtain tags, search id and insert
+            foreach(object item in it) 
+            {
+                //Tag selected
+                tagSelected = item.ToString();
+                //Tag id
+                idTagSelected = obtainTagID(tagSelected);
+                //Insert on table TAGS_CUSTOMERS
+                createTagCustomer(idTagSelected, customerID);
+            }
+        }
+
     }
 }

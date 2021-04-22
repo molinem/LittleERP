@@ -5,45 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ERP.Presentacion"
         mc:Ignorable="d"
-        Title="Nuevo Cliente" Height="698.842" Width="894.192" WindowStartupLocation="CenterScreen" Background="#FFB0D2EE" ResizeMode="NoResize">
-    <Grid Margin="0,0,-6,-1" RenderTransformOrigin="0.525,0.518">
+        Title="Nuevo Cliente" Height="694.592" Width="1392.359" WindowStartupLocation="CenterScreen" Background="#FFB0D2EE" ResizeMode="NoResize">
+    <Grid Margin="0,0,-6,-3" RenderTransformOrigin="0.525,0.518">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="89*"/>
+        </Grid.ColumnDefinitions>
 
-        <Label x:Name="txtTitulo" Content="    NUEVO CLIENTE" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Width="700" Margin="110,66,74,490"/>
+        <Label x:Name="txtTitulo" Content="    NUEVO CLIENTE" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Width="700" Margin="351,61,341,515" Grid.ColumnSpan="4"/>
 
-        <Label x:Name="lblName" Content="Nombre :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="28,194,735,219" Height="36" Width="84"/>
-        <TextBox Grid.Row="0" x:Name="txtName" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="170,284,480,319" Height="40"/>
+        <Label x:Name="lblName" Content="Nombre :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="47,304,549,329" Height="36" Width="84"/>
+        <TextBox Grid.Row="0" x:Name="txtName" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="171,297,275,332" Height="40"/>
 
-        <Label x:Name="lblAddress" Content="Dirección :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="44,412,740,205" Height="32" Width="100"/>
-        <TextBox Grid.Row="0" x:Name="txtAddress" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="170,405,480,200" Height="40"/>
+        <Label x:Name="lblAddress" Content="Dirección :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="45,422,535,215" Height="32" Width="100"/>
+        <TextBox Grid.Row="0" x:Name="txtAddress" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="171,417,275,212" Height="40"/>
 
-        <Label x:Name="lblEmail" Content="Email :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="44,536,756,81" Height="32" Width="84" RenderTransformOrigin="0.528,0.683"/>
-        <TextBox Grid.Row="0" x:Name="txtEmail" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="170,531,480,76" Height="40" VerticalAlignment="Center"/>
+        <Label x:Name="lblEmail" Content="Email :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="45,546,551,91" Height="32" Width="84" RenderTransformOrigin="0.528,0.683"/>
+        <TextBox Grid.Row="0" x:Name="txtEmail" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="171,542,275,87" Height="40" VerticalAlignment="Center"/>
 
-        <Label x:Name="lbSurname" Content="Apellido :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="46,351,740,264" Height="34" Width="98"/>
-        <TextBox Grid.Row="0" x:Name="txtSurname" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="170,340,480,257" Height="40"/>
+        <Label x:Name="lbSurname" Content="Apellido :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="47,361,535,274" Height="34" Width="98"/>
+        <TextBox Grid.Row="0" x:Name="txtSurname" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="171,356,275,273" Height="40"/>
 
-        <Label x:Name="lblPhone" Content="Móvil :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="44,472,742,143" Height="34" Width="98" RenderTransformOrigin="0.968,0.591"/>
-        <TextBox Grid.Row="0" x:Name="txtPhone" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="170,462,480,136" Height="40"/>
+        <Label x:Name="lblPhone" Content="Móvil :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="45,482,537,153" Height="34" Width="98" RenderTransformOrigin="0.968,0.591"/>
+        <TextBox Grid.Row="0" x:Name="txtPhone" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="171,477,275,152" Height="40"/>
 
-        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="637,512,187,88" Grid.Row="0" Grid.Column="0" Background="Transparent" Click="btnNewCustomerDB_Click" Width="70" Height="71">
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="519,506,91,91" Grid.Row="0" Grid.Column="0" Background="Transparent" Click="btnNewCustomerDB_Click" Width="70" Height="72">
             <Image Source="/Resources/add.png" RenderTransformOrigin="3.246,3.152" />
         </Button>
 
-        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="707,478,111,121" Grid.Row="0" Grid.Column="0" Background="Transparent" Click="btnSelectCP_Click" Height="72" Width="76"/>
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="362,304,280,293" Grid.Row="0" Grid.Column="3" Background="Transparent" Click="btnSelected_Click" Width="70" Height="72">
+            <Image x:Name="btnSelected" Source="/ERP;component/Resources/selected.png" RenderTransformOrigin="3.246,3.152" />
+        </Button>
 
-        <Label x:Name="lblDni" Content="DNI :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="49,229,751,384" Height="36" Width="84"/>
-        <TextBox Grid.Row="0" x:Name="txtDni" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="170,216,480,379"/>
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="362,434,280,163" Grid.Row="0" Grid.Column="3" Background="Transparent" Click="btnNotSelected_Click" Width="70" Height="72" RenderTransformOrigin="0.495,0.5">
+            <Image x:Name="btnNotSelected" Source="/ERP;component/Resources/not_selected.png" RenderTransformOrigin="3.246,3.152" />
+        </Button>
 
-        <ComboBox x:Name="cboRegion" HorizontalAlignment="Left" Margin="579,239,0,0" VerticalAlignment="Top" Width="204" Height="30" FontSize="20" FontFamily="Times New Roman" SelectionChanged="cboRegion_SelectionChanged"/>
-        <Label x:Name="lblRegion" Content="Región :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="467,229,333,389" Height="36" Width="84"/>
+        <Label x:Name="lblDni" Content="DNI :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="50,239,546,394" Height="36" Width="84"/>
+        <TextBox Grid.Row="0" x:Name="txtDni" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="171,235,275,393"/>
 
-        <ComboBox x:Name="cboState" HorizontalAlignment="Left" Margin="579,302,0,0" VerticalAlignment="Top" Width="204" Height="30" FontSize="20" FontFamily="Times New Roman" SelectionChanged="cboState_SelectionChanged"/>
-        <Label x:Name="lblState" Content="Provincia :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="464,290,315,323" Height="36" Width="105"/>
+        <ComboBox x:Name="cboRegion" HorizontalAlignment="Left" Margin="579,239,0,0" VerticalAlignment="Top" Width="204" Height="30" FontSize="20" FontFamily="Times New Roman" SelectionChanged="cboRegion_SelectionChanged" Grid.ColumnSpan="4"/>
+        <Label x:Name="lblRegion" Content="Región :" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="0,237,139,396" Height="36" Width="84"/>
 
-        <ComboBox x:Name="cboCity" HorizontalAlignment="Left" Margin="579,362,0,0" VerticalAlignment="Top" Width="204" Height="30" FontSize="20" FontFamily="Times New Roman" SelectionChanged="cboCity_SelectionChanged"/>
-        <Label x:Name="lblCity" Content="Ciudad :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="464,351,315,262" Height="36" Width="105"/>
+        <ComboBox x:Name="cboState" HorizontalAlignment="Left" Margin="579,302,0,0" VerticalAlignment="Top" Width="204" Height="30" FontSize="20" FontFamily="Times New Roman" SelectionChanged="cboState_SelectionChanged" Grid.ColumnSpan="4"/>
+        <Label x:Name="lblState" Content="Provincia :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="449,300,126,333" Height="36" Width="105"/>
 
-        <ComboBox x:Name="cboZipCode" Margin="579,422,0,0" Width="204" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Times New Roman"/>
-        <Label x:Name="lblZipCode" Content="CP :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="465,410,372,203" Height="36" Width="47"/>
+        <ComboBox x:Name="cboCity" Margin="579,362,0,0" VerticalAlignment="Top" Height="30" FontSize="20" FontFamily="Times New Roman" SelectionChanged="cboCity_SelectionChanged" HorizontalAlignment="Left" Width="204" Grid.ColumnSpan="4"/>
+        <Label x:Name="lblCity" Content="Ciudad :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="449,361,126,272" Height="36" Width="105"/>
+
+        <ComboBox x:Name="cboZipCode" Margin="579,422,0,0" Width="204" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontFamily="Times New Roman" Grid.ColumnSpan="4"/>
+        <Label x:Name="lblZipCode" Content="CP :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="450,420,183,213" Height="36" Width="47"/>
+        <ListBox x:Name="listTagsOriginal" HorizontalAlignment="Left" Height="274" Margin="149,287,0,0" VerticalAlignment="Top" Width="193" FontSize="20" FontFamily="Times New Roman" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <ListBox x:Name="listTagsSelected" HorizontalAlignment="Left" Height="274" Margin="454,287,0,0" VerticalAlignment="Top" Width="193" FontSize="20" FontFamily="Times New Roman" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label x:Name="txtTitulo_Copy" Content="    NUEVO CLIENTE" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Width="700" Margin="351,61,341,515" Grid.ColumnSpan="4"/>
+        <Label x:Name="lblTagsSelected" Content="Tags Seleccionadas" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="0,233,75,400" Height="36" Width="166" Grid.Column="3" FontWeight="Bold"/>
+        <Label x:Name="lblTagsSelected_Copy" Content="Tags disponibles" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="0,233,395,400" Height="36" Width="143" Grid.Column="3" FontWeight="Bold"/>
+
     </Grid>
 </Window>
