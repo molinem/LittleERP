@@ -235,7 +235,61 @@ namespace ERP.Dominio.Manager
             return id;
         }
 
+        public void refillAllCombos(int id, ComboBox region, ComboBox state, ComboBox city, ComboBox cp)
+        {
+            string sql = "SELECT R.IDREGION, R.REGION, S.IDSTATE, S.STATE, C.IDCITY, C.CITY, ZP.IDZIPCODE FROM REGIONS R, STATES S, ZIPCODES ZP, CITIES C, ZIPCODESCITIES Z, CUSTOMERS CS " +
+                " WHERE CS.IDCUSTOMER = " + id + " AND CS.REFZIPCODESCITIES = Z.IDZIPCODESCITIES AND R.IDREGION = S.REFREGION AND S.IDSTATE = Z.REFSTATE AND Z.REFCITY = C.IDCITY AND ZP.IDZIPCODE = Z.REFZIPCODE";
 
+            ConnectOracle cn = new ConnectOracle();
+            DataSet data = cn.getData(sql, "POBLACION");
+            DataTable ttable = data.Tables["POBLACION"];
+            DataRow row = ttable.Rows[0];
+
+            //Region
+            for (int i = 0; i < region.Items.Count; i++)
+            {
+                DataRowView aux = (DataRowView)region.Items[i];
+
+                if (ttable.Rows[0]["IDREGION"].ToString().Equals(aux.Row[0].ToString()))
+                {
+                    region.SelectedIndex = i;
+                }
+            }
+
+            //State
+            for (int i = 0; i < state.Items.Count; i++)
+            {
+                DataRowView aux = (DataRowView)state.Items[i];
+
+                if (ttable.Rows[0]["IDSTATE"].ToString().Equals(aux.Row[0].ToString()))
+                {
+                    state.SelectedIndex = i;
+                }
+            }
+
+            //City
+            for (int i = 0; i < city.Items.Count; i++)
+            {
+                DataRowView aux = (DataRowView)city.Items[i];
+
+                if (ttable.Rows[0]["IDCITY"].ToString().Equals(aux.Row[0].ToString()))
+                {
+                    city.SelectedIndex = i;
+                }
+            }
+
+            //CP
+            for (int i = 0; i < cp.Items.Count; i++)
+            {
+                DataRowView aux = (DataRowView)cp.Items[i];
+
+                if (ttable.Rows[0]["IDZIPCODE"].ToString().Equals(aux.Row[0].ToString()))
+                {
+                    cp.SelectedIndex = i;
+                }
+            }
+
+        }
         //--------------------------------------------------------------------TAGS----------------------------------------------------------------------------------
         public void readAllTags()
         {
@@ -312,7 +366,7 @@ namespace ERP.Dominio.Manager
             return idTag;
         }
 
-            public void add_tags_customer(ItemCollection it)
+        public void add_tags_customer(ItemCollection it)
         {
             OracleConnection connection;
             DataSet data = new DataSet();
@@ -346,6 +400,52 @@ namespace ERP.Dominio.Manager
                 idTagSelected = obtainTagID(tagSelected);
                 //Insert on table TAGS_CUSTOMERS
                 createTagCustomer(idTagSelected, customerID);
+            }
+        }
+
+        public void loadTagsList(ListBox listOriginal, ListBox ListSelected, int idCustomer)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle load = new ConnectOracle();
+            connection = load.getConnection();
+
+            connection.Open();
+
+            //All tags that customer has
+            OracleCommand cmd = new OracleCommand("SELECT T.NAME FROM TAGS T, TAGS_CUSTOMERS TC WHERE T.IDTAG = TC.REFIDTAG AND TC.REFIDCUSTOMER=:id", connection);
+            cmd.Parameters.Add(new OracleParameter("id", idCustomer));
+
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            da.Fill(data, "tags");
+
+            connection.Close();
+            DataTable table = data.Tables["tags"];
+
+            //Load list selected
+            foreach (DataRow row in table.Rows)
+            {
+                ListSelected.Items.Add(row["NAME"]);
+            }
+
+
+            //Obtain all tags except that customer has
+            connection.Open();
+            cmd = new OracleCommand("SELECT NAME FROM TAGS WHERE TAGS.NAME NOT IN(SELECT T.NAME FROM TAGS T, TAGS_CUSTOMERS TC WHERE T.IDTAG = TC.REFIDTAG AND TC.REFIDCUSTOMER=:id)", connection);
+            cmd.Parameters.Add(new OracleParameter("id", idCustomer));
+
+            cmd.ExecuteNonQuery();
+            da = new OracleDataAdapter(cmd);
+            data = new DataSet();
+            da.Fill(data, "tags");
+
+            connection.Close();
+            table = data.Tables["tags"];
+
+            foreach (DataRow row in table.Rows)
+            {
+                listOriginal.Items.Add(row["NAME"]);
             }
         }
 

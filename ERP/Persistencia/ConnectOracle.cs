@@ -68,7 +68,7 @@ namespace ERP.Persistencia
             OracleConnection objConnection;
             OracleDataAdapter objCommand;
             DataSet requestQuery = new DataSet();
-            Object resultado;
+            Object result;
 
             objConnection = getConnection();
             objConnection.Open();
@@ -86,14 +86,29 @@ namespace ERP.Persistencia
 
             try
             {
-                resultado = requestQuery.Tables[0].Rows[0][requestQuery.Tables[0].Columns.IndexOf(column)];
+                result = requestQuery.Tables[0].Rows[0][requestQuery.Tables[0].Columns.IndexOf(column)];
             }
             catch (Exception a)
             {
-                resultado = -1;
+                result = -1;
             }
             objConnection.Close();
-            return resultado;
+            return result;
+        }
+
+        public DataSet getData(String query, String table)
+        {
+            OracleConnection objConnection;
+            OracleDataAdapter objComando;
+            DataSet requestQuery = new DataSet();
+
+            objConnection = getConnection();
+            objConnection.Open();
+            objComando = new OracleDataAdapter(query, objConnection);
+            objComando.Fill(requestQuery, table);
+            objConnection.Close();
+
+            return requestQuery;
         }
     }
 

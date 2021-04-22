@@ -13,3 +13,23 @@ D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP
 D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.csproj.CoreCompileInputs.cache
 D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.exe
 D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\ERP.pdb
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\Presentacion\MainWindow.g.cs
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\Presentacion\WCustomer.g.cs
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\App.g.cs
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP_MarkupCompile.cache
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP_MarkupCompile.lref
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\bin\x64\Release\ERP.exe.config
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\bin\x64\Release\ERP.exe
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\bin\x64\Release\ERP.pdb
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\bin\x64\Release\GridExtra.Wpf.dll
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\bin\x64\Release\Oracle.ManagedDataAccess.dll
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\Presentacion\MainWindow.baml
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\Presentacion\WCustomer.baml
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.g.resources
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.Properties.Resources.resources
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.csproj.GenerateResource.cache
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.csproj.CoreCompileInputs.cache
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.csproj.CopyComplete
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.exe
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.pdb
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.csprojAssemblyReference.cache
