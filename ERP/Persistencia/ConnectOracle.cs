@@ -50,7 +50,7 @@ namespace ERP.Persistencia
             OracleConnection connection;
             DataSet requestQuery = new DataSet();
 
-            connection = getConnection(); ;
+            connection = getConnection();
             connection.Open();
 
             OracleCommand cmd = new OracleCommand("INSERT INTO :table VALUES :data * FROM :table", connection);
@@ -61,6 +61,40 @@ namespace ERP.Persistencia
             connection.Close();
         }
 
+        
+        //Method to retrieve only one value
+        public Object DLookUp(String column, String table, String condition)
+        {
+            OracleConnection objConnection;
+            OracleDataAdapter objCommand;
+            DataSet requestQuery = new DataSet();
+            Object resultado;
+
+            objConnection = getConnection();
+            objConnection.Open();
+
+            if (condition.Equals(""))
+            {
+                objCommand = new OracleDataAdapter("Select " + column + " from " + table, objConnection);
+            }
+            else
+            {
+                objCommand = new OracleDataAdapter("Select " + column + " from " + table + " where " + condition, objConnection);
+            }
+
+            objCommand.Fill(requestQuery);
+
+            try
+            {
+                resultado = requestQuery.Tables[0].Rows[0][requestQuery.Tables[0].Columns.IndexOf(column)];
+            }
+            catch (Exception a)
+            {
+                resultado = -1;
+            }
+            objConnection.Close();
+            return resultado;
+        }
     }
 
 

@@ -64,6 +64,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -99,8 +100,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Presentacion\New_Customer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Presentacion\New_Customer.xaml.cs">
+      <DependentUpon>New_Customer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -117,6 +125,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -127,21 +136,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\modify_us.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\remove_us.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\add_us.png" />
+    <Resource Include="Resources\add.png" />
+    <Resource Include="Resources\modify.png" />
+    <Resource Include="Resources\remove.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Entypo_d83d%280%29_64.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Entypo_d83d%280%29_48.png" />
+    <Resource Include="Resources\not_selected.png" />
+    <Resource Include="Resources\selected.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using ERP.Dominio;
+using ERP.Presentacion;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,16 +23,33 @@ namespace ERP
     /// </summary>
     public partial class MainWindow : Window
     {
+         
         public MainWindow()
         {
             InitializeComponent();
+            //Load Clients that not deleted
+            Customer.manager().startDataGridCustomers(dgCustomer);
+        }
+        
+        private void btnNewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            //Option + for create new customer
+            New_Customer cc = new New_Customer('+');
+            cc.ShowDialog();
+            //Refresh DataGrid
+            Customer.manager().startDataGridCustomers(dgCustomer);
         }
 
         private void btnBusqueda_Click(object sender, RoutedEventArgs e)
         {
-            Customer.readAll();
-            DataTable dtClientes = Customer.manager().obtainCustomers();
-            dgClientes.ItemsSource = dtClientes.DefaultView;
+       
+        }
+
+        private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+            DataRowView row = dgCustomer.SelectedItem as DataRowView;
+            Console.WriteLine("------------------- " + row.ToString());
         }
     }
 }

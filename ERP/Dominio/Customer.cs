@@ -11,6 +11,7 @@ namespace ERP.Dominio
     {
         //------------------------------------Attributes--------------------------------
         private int idCustomer { get; set; }
+        private String dni { get; set; }
         private String name { get; set; }
         private String surname { get; set; }
         private String address { get; set; }
@@ -21,9 +22,21 @@ namespace ERP.Dominio
         private static ManagerCustomer g;
 
         //------------------------------------Constructors--------------------------------
-        public Customer(int idCustomer, string name, string surname, string address, int phone_number, string email, int zip_code)
+        public Customer(int idCustomer, String dni,String name, String surname, String address, int phone_number, String email, int zip_code)
         {
+            this.dni = dni;
             this.idCustomer = idCustomer;
+            this.name = name;
+            this.surname = surname;
+            this.address = address;
+            this.phone_number = phone_number;
+            this.email = email;
+            this.zip_code = zip_code;
+        }
+
+        public Customer(String name, String dni, String surname, String address, int phone_number, String email, int zip_code)
+        {
+            this.dni = dni;
             this.name = name;
             this.surname = surname;
             this.address = address;
@@ -68,7 +81,7 @@ namespace ERP.Dominio
 
         public String getEmail()
         {
-            return this.email;
+            return email;
         }
 
         public int getZipCode()
@@ -76,6 +89,10 @@ namespace ERP.Dominio
             return zip_code;
         }
 
+        public String getDni()
+        {
+            return dni;
+        }
 
         //-----------------------------------Setters-----------------------------------
         public void setId(int idCustomer) 
@@ -111,6 +128,11 @@ namespace ERP.Dominio
         public void setZipCode(int zip_code)
         {
             this.zip_code = zip_code;
+        }
+
+        public void setDni(String dni)
+        {
+            this.dni = dni;
         }
 
         //-----------------------------------Methods-----------------------------------
