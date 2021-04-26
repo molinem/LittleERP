@@ -156,9 +156,5 @@ namespace ERP.Dominio
             manager().modifyCustomer(this);
         }
 
-        public void delete() 
-        {
-            manager().deleteCustomer(this);
-        }
     }
 }

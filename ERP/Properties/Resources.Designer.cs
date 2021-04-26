@@ -73,16 +73,6 @@ namespace ERP.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Entypo_d83d_0__64 {
-            get {
-                object obj = ResourceManager.GetObject("Entypo_d83d_0__64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap modify {
             get {
                 object obj = ResourceManager.GetObject("modify", resourceCulture);

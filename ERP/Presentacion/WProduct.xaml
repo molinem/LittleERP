@@ -1,0 +1,55 @@
+﻿<Window x:Class="ERP.WProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ERP"
+        mc:Ignorable="d"
+        Title="Nuevo Producto" Height="644.5" Width="1113.859" WindowStartupLocation="CenterScreen" Background="#FFB0D2EE" ResizeMode="NoResize">
+    <Grid Margin="-163,0,-122,-76" RenderTransformOrigin="0.525,0.518">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="89*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="txtTitleProduct" Content="    NUEVO PRODUCTO" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Width="761" Margin="352,55,280,543" Grid.ColumnSpan="4"/>
+
+        <Label x:Name="lblPriceProduct" Content="Precio :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="238,418,358,237" Height="36" Width="84" FontWeight="Bold"/>
+        <TextBox Grid.Row="0" x:Name="txtPriceProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="377,415,69,236" Height="40"/>
+
+        <Label x:Name="lbAmountProduct" Content="Cantidad :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="237,482,339,175" Height="34" Width="104" FontWeight="Bold"/>
+        <TextBox Grid.Row="0" x:Name="txtAmountProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="377,480,69,171" Height="40"/>
+
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="371,529,239,90" Grid.Row="0" Grid.Column="0" Background="Transparent" Width="70" Height="72" Click="btnNewProduct">
+            <Image Source="/ERP;component/Resources/save.png" RenderTransformOrigin="3.246,3.152" />
+        </Button>
+
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="484,529,126,90" Grid.Row="0" Background="Transparent"  Width="70" Height="72" Click="btnCleanFields">
+            <Image x:Name="btnCleanProduct" Source="/ERP;component/Resources/clean.png" RenderTransformOrigin="3.246,3.152" />
+        </Button>
+
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="213,277,430,342" Grid.Row="0" Background="Transparent"  Width="70" Height="72" Grid.Column="3" Click="btnSelected_Click">
+            <Image x:Name="btnSelected" Source="/ERP;component/Resources/selected.png" RenderTransformOrigin="3.246,3.152" />
+        </Button>
+
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="213,394,430,225" Grid.Row="0" Background="Transparent"  Width="70" Height="72" RenderTransformOrigin="0.495,0.5" Grid.Column="3" Click="btnNotSelected_Click">
+            <Image x:Name="btnNotSelected" Source="/ERP;component/Resources/not_selected.png" RenderTransformOrigin="3.246,3.152" />
+        </Button>
+
+        <Label x:Name="lblNameProduct" Content="Nombre :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="238,245,350,410" Height="36" Width="92" FontWeight="Bold"/>
+        <TextBox Grid.Row="0" x:Name="txtNameProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="377,241,69,410" Height="40"/>
+
+        <ComboBox x:Name="cboCompositionProduct" HorizontalAlignment="Left" Margin="377,306,0,0" VerticalAlignment="Top" Width="234" Height="30" FontSize="20" FontFamily="Times New Roman" />
+        <Label x:Name="lblCompositionProduct" Content="Composición :" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="0,302,308,353" Height="36" Width="135" FontWeight="Bold"/>
+
+        <ComboBox x:Name="cboSizeProduct" HorizontalAlignment="Left" Margin="377,361,0,0" VerticalAlignment="Top" Width="234" Height="30" FontSize="20" FontFamily="Times New Roman"/>
+        <Label x:Name="lblState" Content="Tamaño :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="236,359,338,296" Height="36" Width="106" FontWeight="Bold"/>
+        <ListBox x:Name="listTagsOriginal" HorizontalAlignment="Left" Height="274" Margin="679,246,0,0" VerticalAlignment="Top" Width="193" FontSize="20" FontFamily="Times New Roman" Grid.ColumnSpan="4"/>
+        <ListBox x:Name="listTagsSelected" HorizontalAlignment="Left" Height="274" Margin="304,246,0,0" VerticalAlignment="Top" Width="193" FontSize="20" FontFamily="Times New Roman" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Label x:Name="lblTagsSelected" Content="Tags Seleccionadas" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="0,203,225,452" Height="36" Width="172" Grid.Column="3" FontWeight="Bold"/>
+        <Label x:Name="lblTagsSelected_Copy" Content="Tags disponibles" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="0,203,545,452" Height="36" Width="143" FontWeight="Bold" Grid.Column="3"/>
+
+    </Grid>
+</Window>

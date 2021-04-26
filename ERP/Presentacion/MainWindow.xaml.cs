@@ -31,6 +31,13 @@ namespace ERP
             InitializeComponent();
             //Load Clients that not deleted
             Customer.manager().startDataGridCustomers(dgCustomer);
+
+            //Hide Column id
+            this.dgCustomer.Columns[0].Visibility = Visibility.Hidden;
+
+
+            //Bug if you try to load on event tabControlSelectionChanged
+            //Windows Load event -> works
         }
         
         private void btnNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -64,8 +71,8 @@ namespace ERP
 
                 //Option M for Modify customer
                 WCustomer cc = new WCustomer('M', idCustomer, dni, name, surname, address, phone, email, city);
-
                 cc.ShowDialog();
+
                 //Refresh DataGrid
                 Customer.manager().startDataGridCustomers(dgCustomer);
             }
@@ -76,7 +83,29 @@ namespace ERP
             
         }
 
+        private void btnDeleteCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataRowView = (DataRowView)dgCustomer.SelectedItem;
+            if (dataRowView != null)
+            {
+                idCustomer = int.Parse(dataRowView.Row[0].ToString());
+                DialogResult result = MessageBox.Show("¿Estas seguro que quieres borrar el Cliente: " + dataRowView.Row[2].ToString() + " ?", "LittleERP", MessageBoxButtons.OKCancel);
+                
+                
+                if (result.ToString().Equals("OK"))
+                {
+                    //Delete user -->delete logic
+                    Customer.manager().deleteCustomer(idCustomer);
 
+                    //Refresh DataGrid
+                    Customer.manager().startDataGridCustomers(dgCustomer);
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private void btnBusqueda_Click(object sender, RoutedEventArgs e)
         {
        
@@ -87,5 +116,58 @@ namespace ERP
 
             
         }
+
+
+        private void txtSearchByName(object sender, TextChangedEventArgs e)
+        {
+            if (txtFilterName.Text.Contains("'"))
+            {
+                txtFilterName.Text = "";
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+
+                //String nameCustomer = txtFilterName.Text;
+                //Customer.manager().searchByNameDataGridCustomers(dgCustomer, nameCustomer);
+
+
+                //Other method
+                /*foreach (DataGridViewRow row in dgCustomer)
+                {
+                    //string cadFecha = (string)row.Cells[5].Value;
+                    //DateTime fecha = DateTime.ParseExact(cadFecha, "dd'/'MM'/'yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+
+                    CurrencyManager currencyManager1 = (CurrencyManager)dgCustomer.ItemsSource;
+                    currencyManager1.SuspendBinding();
+
+                    if (!txtFilterName.Text.ToString().Equals("") && !row.Cells[2].Value.ToString().Contains(txtFilterName.Text.ToString()))
+                    {
+                        row.Visible = false;
+                    }
+
+                    currencyManager1.ResumeBinding();
+                }*/
+            }
+        }
+
+        //When tab products is loaded
+        private void tabProducts_Loaded(object sender, RoutedEventArgs e)
+        {
+            Product.manager().startDataGridProduct(dgProducts);
+            //Hide Column id
+            this.dgProducts.Columns[0].Visibility = Visibility.Hidden;
+        }
+
+
+        private void btnNewProduct_Click(object sender, RoutedEventArgs e)
+        {
+            WProduct p = new WProduct('+');
+            p.ShowDialog();
+
+            //Refres dgProducts
+            Product.manager().startDataGridProduct(dgProducts);
+        }
+
     }
 }

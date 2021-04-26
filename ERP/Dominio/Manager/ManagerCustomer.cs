@@ -124,13 +124,14 @@ namespace ERP.Dominio.Manager
 
             connection.Open();
 
-            OracleCommand cmd = new OracleCommand("UPDATE CUSTOMERS SET NAME=:name, SURNAME=:surname, ADDRESS=:address, PHONE=:phone, EMAIL=:email, REFZIPCODESCITIES:=zipCode WHERE IDCUSTOMER=:idCustomer",connection);
+            OracleCommand cmd = new OracleCommand("UPDATE CUSTOMERS SET NAME=:name, SURNAME=:surname, ADDRESS=:address, PHONE=:phone, EMAIL=:email, REFZIPCODESCITIES=:zipCode, DNI=:dni WHERE IDCUSTOMER=:idCustomer", connection);
             cmd.Parameters.Add(new OracleParameter("name", c.getName()));
             cmd.Parameters.Add(new OracleParameter("surname", c.getSurname()));
             cmd.Parameters.Add(new OracleParameter("address", c.getAddress()));
             cmd.Parameters.Add(new OracleParameter("phone", c.getPhoneNumber()));
             cmd.Parameters.Add(new OracleParameter("email", c.getEmail()));
             cmd.Parameters.Add(new OracleParameter("zipCode", c.getZipCode()));
+            cmd.Parameters.Add(new OracleParameter("dni", c.getDni()));
             cmd.Parameters.Add(new OracleParameter("idCustomer", c.getIdCustomer()));
 
             cmd.ExecuteNonQuery();
@@ -138,7 +139,9 @@ namespace ERP.Dominio.Manager
             connection.Close();
         }
 
-        public void deleteCustomer(Customer c)
+
+        //Logic delete -> field deleted = 1
+        public void deleteCustomer(int idCustomer)
         {
             OracleConnection connection;
             DataSet data = new DataSet();
@@ -148,7 +151,7 @@ namespace ERP.Dominio.Manager
             connection.Open();
 
             OracleCommand cmd = new OracleCommand("UPDATE CUSTOMERS SET DELETED=1 WHERE IDCUSTOMER=:idCustomer", connection);
-            cmd.Parameters.Add(new OracleParameter("idCustomer", c.getIdCustomer()));
+            cmd.Parameters.Add(new OracleParameter("idCustomer", idCustomer));
 
             cmd.ExecuteNonQuery();
 
@@ -188,12 +191,7 @@ namespace ERP.Dominio.Manager
             connection.Close();
         }
 
-        public void startDataGridCustomers(DataGrid dgCustomers)
-        {
-            readAllCustomers();
-            DataTable dtClientes = obtainData();
-            dgCustomers.ItemsSource = dtClientes.DefaultView;
-        }
+        
 
         //--------------------------------------------------------------------ComboBox----------------------------------------------------------------------------------
         public void refillComboRegion(ComboBox combo)
@@ -366,7 +364,8 @@ namespace ERP.Dominio.Manager
             return idTag;
         }
 
-        public void add_tags_customer(ItemCollection it)
+        //Only for new Customers
+        public void add_tags_new_customer(ItemCollection it)
         {
             OracleConnection connection;
             DataSet data = new DataSet();
@@ -400,6 +399,24 @@ namespace ERP.Dominio.Manager
                 idTagSelected = obtainTagID(tagSelected);
                 //Insert on table TAGS_CUSTOMERS
                 createTagCustomer(idTagSelected, customerID);
+            }
+        }
+
+        //Only for update Customers
+        public void update_tags_customer(int idCustomer,ItemCollection it)
+        {
+            //-------------Procedure TAGS--------------------
+            String tagSelected;
+            int idTagSelected;
+            //Obtain tags, search id and insert
+            foreach (object item in it)
+            {
+                //Tag selected
+                tagSelected = item.ToString();
+                //Tag id
+                idTagSelected = obtainTagID(tagSelected);
+                //Insert on table TAGS_CUSTOMERS
+                createTagCustomer(idTagSelected, idCustomer);
             }
         }
 
@@ -449,5 +466,50 @@ namespace ERP.Dominio.Manager
             }
         }
 
+        public void updateTags(Customer c, ItemCollection listTags)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle updateCustomer = new ConnectOracle();
+            connection = updateCustomer.getConnection();
+
+            connection.Open();
+
+            OracleCommand cmd = new OracleCommand("DELETE FROM TAGS_CUSTOMERS WHERE REFIDCUSTOMER=:idCustomer", connection);
+            cmd.Parameters.Add(new OracleParameter("idCustomer", c.getIdCustomer()));
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            //Call insert tags (id Customer)
+            update_tags_customer(c.getIdCustomer(),listTags);
+        }
+
+        //--------------------------------------------------------------------DataGrid + Filters----------------------------------------------------------------------------------
+        public void startDataGridCustomers(DataGrid dgCustomers)
+        {
+            readAllCustomers();
+            DataTable dtCustomers = obtainData();
+            dgCustomers.ItemsSource = dtCustomers.DefaultView;
+        }
+
+
+        //Search on DataGrid By name customer
+        public void findByNameDatagrid(String name)
+        {            
+            String sql = "SELECT C.IDCUSTOMER, C.DNI, C.NAME, C.SURNAME, C.ADDRESS, C.PHONE, C.EMAIL, S.STATE FROM CUSTOMERS C, ZIPCODESCITIES Z, STATES S WHERE C.REFZIPCODESCITIES = Z.IDZIPCODESCITIES AND Z.REFSTATE = S.IDSTATE AND UPPER(C.NAME) LIKE '%"+name+"%' AND C.DELETED = 0 ORDER BY C.IDCUSTOMER";
+            ConnectOracle cn = new ConnectOracle();
+            DataSet data = cn.getData(sql, "customer");
+
+            table = data.Tables["customer"];
+        }
+
+        public void searchByNameDataGridCustomers(DataGrid dgCustomers,String name)
+        {
+            findByNameDatagrid(name);
+            DataTable dtCustomersSearch = obtainData();
+            dgCustomers.ItemsSource = dtCustomersSearch.DefaultView;
+        }
     }
 }

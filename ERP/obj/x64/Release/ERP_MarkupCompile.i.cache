@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\obj\x64\Release\
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\
 ERP
 none
 false
 TRACE
-D:\Antonio Sánchez\Grado Informática\TERCERO\GESTIÓN_SISTEMAS_INFORMACION\ERP\ERP\ERP\App.xaml
-1-415653747
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\App.xaml
+3-413579471
 
-61376593190
-13-1505183044
-Presentacion\MainWindow.xaml;
+13-812614278
+17-217586583
+Presentacion\MainWindow.xaml;Presentacion\WProduct.xaml;Presentacion\WCustomer.xaml;
 
 True
 

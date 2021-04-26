@@ -14,18 +14,25 @@ namespace ERP.Dominio
         private String name { get; set; }
         private int refComposition { get; set; }
         private int refSizes { get; set; }
-        private float price{ get; set; }
+        private double price{ get; set; }
         private int amount { get; set; }
 
         private static ManagerProduct g;
 
         //------------------------------------Constructors--------------------------------
-        public Product(int idProduct, String name, int refComposition, int refSizes, float price, int amount)
+        public Product(int idProduct, String name, int refComposition, int refSizes, double price, int amount)
         {
             this.idProduct = idProduct;
             this.name = name;
             this.refComposition = refComposition;
             this.refSizes = refSizes;
+            this.price = price;
+            this.amount = amount;
+        }
+
+        public Product(String name, double price, int amount)
+        {
+            this.name = name;
             this.price = price;
             this.amount = amount;
         }
@@ -59,7 +66,7 @@ namespace ERP.Dominio
             return refSizes;
         }
 
-        public float getPrice()
+        public double getPrice()
         {
             return price;
         }
@@ -110,11 +117,6 @@ namespace ERP.Dominio
         public void search()
         {
             g.readProduct(this);
-        }
-
-        public void create()
-        {
-            g.createProduct(this);
         }
 
         public void modify()
