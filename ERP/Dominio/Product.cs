@@ -30,8 +30,18 @@ namespace ERP.Dominio
             this.amount = amount;
         }
 
-        public Product(String name, double price, int amount)
+        public Product(String name, int refComposition, int refSizes, double price, int amount)
         {
+            this.name = name;
+            this.refComposition = refComposition;
+            this.refSizes = refSizes;
+            this.price = price;
+            this.amount = amount;
+        }
+
+        public Product(int idProduct,String name, double price, int amount)
+        {
+            this.idProduct = idProduct;
             this.name = name;
             this.price = price;
             this.amount = amount;
@@ -124,9 +134,5 @@ namespace ERP.Dominio
             g.modifyProduct(this);
         }
 
-        public void delete()
-        {
-            g.deleteProduct(this);
-        }
     }
 }

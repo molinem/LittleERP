@@ -32,6 +32,6 @@ C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\r
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.csproj.CopyComplete
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.exe
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.pdb
-C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.csprojAssemblyReference.cache
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\Presentacion\WProduct.g.cs
 C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\Presentacion\WProduct.baml
+C:\Cloud\Universidad\Curso2020_21\2_cuatrimestre\Sistemas_gestión\laboratorio\repositorio\ERP\obj\x64\Release\ERP.csprojAssemblyReference.cache

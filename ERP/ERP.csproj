@@ -92,6 +92,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dominio\Customer.cs" />
+    <Compile Include="Dominio\Manager\Auxiliary.cs" />
     <Compile Include="Dominio\Manager\ManagerCustomer.cs" />
     <Compile Include="Dominio\Manager\ManagerProduct.cs" />
     <Compile Include="Dominio\Product.cs" />

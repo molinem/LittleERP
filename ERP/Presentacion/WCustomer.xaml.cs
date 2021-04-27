@@ -1,4 +1,5 @@
 ﻿using ERP.Dominio;
+using ERP.Dominio.Manager;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,6 +28,7 @@ namespace ERP
         private char optionSelected;
         private int idCustomerSelected;
 
+        //--------------------------------------------------------------------Constructors----------------------------------------------------------------------------------
         public WCustomer(char option)
         {
             //New Customer
@@ -75,8 +77,10 @@ namespace ERP
             Customer.manager().loadTagsList(listTagsOriginal, listTagsSelected, idCustomer);
         }
 
+        //--------------------------------------------------------------------Buttons----------------------------------------------------------------------------------
         private void btnNewCustomerDB_Click(object sender, RoutedEventArgs e)
         {
+            int state, city, zipCode;
             if (txtDni.Text.ToString().Equals("") || txtAddress.Text.ToString().Equals("") || txtEmail.Text.ToString().Equals("") || txtName.Text.ToString().Equals("") || txtPhone.Text.ToString().Equals("") || txtSurname.Text.ToString().Equals("") || listTagsSelected.Items.IsEmpty)
             {
                 MessageBox.Show("Debes rellenar todos los campos.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -121,27 +125,15 @@ namespace ERP
                 {
                     //Obtain data from ComboBox
                     //Obtain State
-                    DataRowView row = (DataRowView)cboState.SelectedItem;
-                    DataRow data = row.Row;
-                    Object[] objData = data.ItemArray;
-                    decimal stateData = (decimal)objData[0];
-                    int state = (int)stateData;
+                    state = Auxiliary.obtainSelectedOnComboBox(cboState);
 
                     //Obtain city
-                    row = (DataRowView)cboCity.SelectedItem;
-                    data = row.Row;
-                    objData = data.ItemArray;
-                    decimal cityData = (decimal)objData[0];
-                    int city = (int)cityData;
+                    city = Auxiliary.obtainSelectedOnComboBox(cboCity);
 
                     //Obtain zipcode
-                    row = (DataRowView)cboZipCode.SelectedItem;
-                    data = row.Row;
-                    objData = data.ItemArray;
-                    decimal zipcodeDato = (decimal)objData[0];
-                    int zipcode = (int)zipcodeDato;
+                    zipCode = Auxiliary.obtainSelectedOnComboBox(cboZipCode);
 
-                    id = Customer.manager().searchZipCodeCities(state, city, zipcode);
+                    id = Customer.manager().searchZipCodeCities(state, city, zipCode);
                 }
                 else
                 {
@@ -166,6 +158,7 @@ namespace ERP
 
                         //Obtain all selected tags and insert to DB
                         Customer.manager().add_tags_new_customer(listTagsSelected.Items);
+                        MessageBox.Show("Cliente creado correctamente", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -176,6 +169,7 @@ namespace ERP
 
                         //Add Tags
                         Customer.manager().updateTags(updateC, listTagsSelected.Items);
+                        MessageBox.Show("Cliente actualizado correctamente", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     this.Close();
@@ -218,17 +212,13 @@ namespace ERP
             cboZipCode.IsEnabled = false;
         }
 
-
+        //--------------------------------------------------------------------ComboBox----------------------------------------------------------------------------------
         private void cboRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboRegion.SelectedIndex > 0)
             {
                 //Obtain data from combobox
-                DataRowView row = (DataRowView)cboRegion.SelectedItem;
-                DataRow data = row.Row;
-                Object[] objData = data.ItemArray;
-                decimal regionData = (decimal)objData[0];
-                int region = (int)regionData;
+                int region = Auxiliary.obtainSelectedOnComboBox(cboRegion);
                 
                 //Refill
                 Customer.manager().refillComboState(cboState, region);
@@ -250,11 +240,7 @@ namespace ERP
             if (cboState.SelectedIndex > 0)
             {
                 //Obtain state
-                DataRowView row = (DataRowView)cboState.SelectedItem;
-                DataRow data = row.Row;
-                Object[] objData = data.ItemArray;
-                decimal stateData = (decimal)objData[0];
-                int state = (int)stateData;
+                int state = Auxiliary.obtainSelectedOnComboBox(cboState);
                 //Refill cities
                 Customer.manager().refillComboCities(cboCity, state);
                 cboCity.IsEnabled = true;
@@ -272,18 +258,10 @@ namespace ERP
             if (cboCity.SelectedIndex > 0)
             {
                 //Obtain City
-                DataRowView row = (DataRowView)cboCity.SelectedItem;
-                DataRow data = row.Row;
-                Object[] objData = data.ItemArray;
-                decimal cityData = (decimal)objData[0];
-                int city = (int)cityData;
+                int city = Auxiliary.obtainSelectedOnComboBox(cboCity);
 
                 //Obtain state
-                row = (DataRowView)cboState.SelectedItem;
-                data = row.Row;
-                objData = data.ItemArray;
-                decimal stateData = (decimal)objData[0];
-                int state = (int)stateData;
+                int state = Auxiliary.obtainSelectedOnComboBox(cboState);
 
 
                 //Refill CP
@@ -296,6 +274,7 @@ namespace ERP
             }
         }
 
+        //--------------------------------------------------------------------ListBox----------------------------------------------------------------------------------
         private void btnSelected_Click(object sender, RoutedEventArgs e)
         {
             if (listTagsOriginal.SelectedItem != null)

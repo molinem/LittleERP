@@ -26,6 +26,8 @@ namespace ERP
     public partial class MainWindow : Window
     {
         private int idCustomer;
+        private int idProduct;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,11 +53,6 @@ namespace ERP
 
         private void btnModifyCustomer_Click(object sender, RoutedEventArgs e)
         {
-            
-            //Obtain id of customer selected
-            //DataRowView row = (DataRowView)dgCustomer.SelectedItems[0];
-            //idCustomer = int.Parse(row["IDCUSTOMER"].ToString());
-
             DataRowView dataRowView = (DataRowView)dgCustomer.SelectedItem;
             if(dataRowView != null)
             {
@@ -106,15 +103,11 @@ namespace ERP
                 MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+
         private void btnBusqueda_Click(object sender, RoutedEventArgs e)
         {
        
-        }
-
-        private void dgClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            
         }
 
 
@@ -165,9 +158,56 @@ namespace ERP
             WProduct p = new WProduct('+');
             p.ShowDialog();
 
-            //Refres dgProducts
+            //Refresh dgProducts
             Product.manager().startDataGridProduct(dgProducts);
         }
 
+        private void btnModifyProduct_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataRowView = (DataRowView)dgProducts.SelectedItem;
+            if (dataRowView != null)
+            {
+                idProduct = Convert.ToInt32(dataRowView.Row[0]);
+                String name = Convert.ToString(dataRowView.Row[1]);
+                double price = Convert.ToDouble(dataRowView.Row[4]);
+                int amount = Convert.ToInt32(dataRowView.Row[5]);
+                
+                //Option M for Modify customer
+                WProduct pr = new WProduct('M', idProduct, name, price, amount);
+                pr.ShowDialog();
+
+                //Refresh DataGrid
+                Product.manager().startDataGridProduct(dgProducts);
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar un producto.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataRowView = (DataRowView)dgProducts.SelectedItem;
+            if (dataRowView != null)
+            {
+                idProduct = int.Parse(dataRowView.Row[0].ToString());
+                DialogResult result = MessageBox.Show("¿Estas seguro que quieres borrar el Producto: " + dataRowView.Row[1].ToString() + " ?", "LittleERP", MessageBoxButtons.OKCancel);
+
+
+                if (result.ToString().Equals("OK"))
+                {
+                    //Delete Product -->delete logic
+                    Product.manager().deleteProduct(idProduct);
+
+                    //Refresh DataGrid
+                    Product.manager().startDataGridProduct(dgProducts);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

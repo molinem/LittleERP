@@ -14,7 +14,7 @@
             <ColumnDefinition Width="89*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="txtTitleProduct" Content="    NUEVO PRODUCTO" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Width="761" Margin="352,55,280,543" Grid.ColumnSpan="4"/>
+        <Label x:Name="txtTitleProduct" Content="    NUEVO PRODUCTO" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Width="908" Margin="311,55,174,543" Grid.ColumnSpan="4"/>
 
         <Label x:Name="lblPriceProduct" Content="Precio :" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="238,418,358,237" Height="36" Width="84" FontWeight="Bold"/>
         <TextBox Grid.Row="0" x:Name="txtPriceProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="20" Width="234" MaxHeight="40" Margin="377,415,69,236" Height="40"/>

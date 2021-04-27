@@ -1,4 +1,5 @@
 ﻿using ERP.Dominio;
+using ERP.Dominio.Manager;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,7 +30,7 @@ namespace ERP
 
         public WProduct(char option)
         {
-            //New Customer
+            //New Product
             InitializeComponent();
             optionSelected = option;
 
@@ -44,9 +45,32 @@ namespace ERP
             //Size
             Product.manager().refillComboSize(cboSizeProduct);
 
-            //Load tags
+            //Load tags (same that products)
             Customer.manager().startListTags(listTagsOriginal);
+        }
 
+        public WProduct(char option, int idProduct, String name, Double price, int amount)
+        {
+            //Modify Product
+            InitializeComponent();
+            optionSelected = option;
+            idProductSelected = idProduct;
+
+            //Initial configuration
+            this.Title = "Modificar Producto";
+            txtTitleProduct.Content = " MODIFICAR PRODUCTO";
+            txtNameProduct.MaxLength = 30;
+            txtPriceProduct.MaxLength = 7;
+            txtAmountProduct.MaxLength = 7;
+
+            txtNameProduct.Text = name;
+            txtPriceProduct.Text = price.ToString();
+            txtAmountProduct.Text = amount.ToString();
+
+            Product.manager().refillComboComposition(cboCompositionProduct);
+            Product.manager().refillComboSize(cboSizeProduct);
+            Product.manager().refillAllCombos(idProduct, cboCompositionProduct, cboSizeProduct);
+            Product.manager().loadTagsList(listTagsOriginal, listTagsSelected, idProduct);
         }
 
         //--------------------------------------------------------------------ListBox----------------------------------------------------------------------------------
@@ -86,12 +110,15 @@ namespace ERP
             cboSizeProduct.SelectedIndex = 0;
         }
 
+        
         private void btnNewProduct(object sender, RoutedEventArgs e)
         {
             int num = 0;
-            double p = 0;
+            double p = 0,priceFormatted;
+            int composition, size;
+            String price;
             
-            if (!txtAmountProduct.Text.Equals("") && !txtNameProduct.Text.Trim().Equals("") && !txtPriceProduct.Equals(""))
+            if (!txtAmountProduct.Text.Equals("") && !txtNameProduct.Text.Trim().Equals("") && !txtPriceProduct.Equals("") && !listTagsSelected.Items.IsEmpty)
             {
                 if (optionSelected.Equals('+'))
                 {
@@ -99,31 +126,24 @@ namespace ERP
                     {
                         if ((double.TryParse(txtPriceProduct.Text, out p) && (double.Parse(txtPriceProduct.Text) > 0)) && (int.TryParse(txtAmountProduct.Text, out num) && int.Parse(txtAmountProduct.Text) > 0))
                         {
-                            String price = txtPriceProduct.Text.Replace('.', ',');
-                            double priceFormatted = double.Parse(price);
-                            Product pr = new Product(txtNameProduct.Text, priceFormatted, int.Parse(txtAmountProduct.Text));
+                            price = txtPriceProduct.Text.Replace('.', ',');
+                            priceFormatted = double.Parse(price);
+                            
+                            //Composition and size from combobox
+                            composition = Auxiliary.obtainSelectedOnComboBox(cboCompositionProduct);
+                            size = Auxiliary.obtainSelectedOnComboBox(cboSizeProduct);
 
+                            //New product with data
+                            Product pr = new Product(txtNameProduct.Text, composition, size, priceFormatted, int.Parse(txtAmountProduct.Text));
 
-                            //Obtain Composition
-                            DataRowView row = (DataRowView)cboCompositionProduct.SelectedItem;/*********************/
-                            DataRow data = row.Row;
-                            Object[] objData = data.ItemArray;
-                            int composition = (int)objData[0];
-
-                            //Obtain Size
-                            DataRowView row2 = (DataRowView)cboSizeProduct.SelectedItem;
-                            DataRow data2 = row2.Row;
-                            data2 = row2.Row;
-                            Object[] objData2 = data2.ItemArray;
-                            int size = (int)objData2[0];
-
-                            String composition2 = "";
-                            String size2 = "";
                             //Insert new product
-                            Product.manager().createProduct(pr, composition2, size2);
+                            Product.manager().createProduct(pr);
 
                             //Insert tag product
                             Product.manager().add_tags_new_products(listTagsSelected.Items);
+
+                            MessageBox.Show("Producto creado correctamente", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
                         }
                         else
                         {
@@ -140,9 +160,25 @@ namespace ERP
                 {
                     if ((double.TryParse(txtPriceProduct.Text, out p) && (double.Parse(txtPriceProduct.Text) > 0)) && (int.TryParse(txtAmountProduct.Text, out num) && int.Parse(txtAmountProduct.Text) > 0))
                     {
-                        //product.modifProduct(txtID.Text, txtName.Text, cbComposicion.GetItemText(cbComposicion.SelectedItem), cbSizes.GetItemText(cbSizes.SelectedItem), txtPrice.Text.Replace('.', ','), txtAmount.Text);
-                        
-                        
+                        //Modify
+                        price = txtPriceProduct.Text.Replace('.', ',');
+                        priceFormatted = double.Parse(price);
+
+                        //Composition and size from combobox
+                        composition = Auxiliary.obtainSelectedOnComboBox(cboCompositionProduct);
+                        size = Auxiliary.obtainSelectedOnComboBox(cboSizeProduct);
+
+                        //Object Product
+                        Product pModify = new Product(idProductSelected, txtNameProduct.Text, composition, size, priceFormatted, int.Parse(txtAmountProduct.Text));
+
+                        //Modify Product
+                        Product.manager().modifyProduct(pModify);
+
+                        //Tags for this product
+                        Product.manager().update_tags_products(idProductSelected,listTagsSelected.Items);
+
+                        MessageBox.Show("Producto actualizado correctamente", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
                     }
                     else
                     {

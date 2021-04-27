@@ -22,7 +22,7 @@ namespace ERP.Dominio.Manager
         {
             return table;
         }
-
+        //--------------------------------------------------------------------READ----------------------------------------------------------------------------------
         public void readAllProducts()
         {
             OracleConnection connection;
@@ -65,11 +65,12 @@ namespace ERP.Dominio.Manager
             p.setName(Convert.ToString(row["NAME"]));
             p.setRefComposition(Convert.ToInt32(row["REFCOMPOSITION"]));
             p.setRefSize(Convert.ToInt32(row["REFSIZES"]));
-            p.setPrice((float)Convert.ToDouble(row["PRICE"]));//********************************************
+            p.setPrice((float)Convert.ToDouble(row["PRICE"]));
             p.setAmount(Convert.ToInt32(row["AMOUNT"]));
         }
 
-        public void createProduct(Product p,String compositionName,String sizeName)
+        //--------------------------------------------------------------------CRUD----------------------------------------------------------------------------------
+        public void createProduct(Product p)
         {
             OracleConnection connection;
             DataSet data = new DataSet();
@@ -78,18 +79,13 @@ namespace ERP.Dominio.Manager
 
             connection.Open();
 
-            //Obtain refComposition by name
-           // int refComposition = obtainComposition(compositionName);
-            //Obtain refSize by name
-            //int refSize = obtainSize(sizeName);
 
-            OracleCommand cmd = new OracleCommand("INSERT INTO PRODUCTS(IDPRODUCT,NAME,REFCOMPOSITION,REFSIZES,PRICE,AMOUNT,DELETED) VALUES(IDPRODUCT.NEXTVAL,:name,:refcomposition,:refsizes,:price,:amount,:deleted)", connection);
+            OracleCommand cmd = new OracleCommand("INSERT INTO PRODUCTS VALUES(IDPRODUCT.NEXTVAL,:name,:refcomposition,:refsizes,:price,:amount,0)", connection);
             cmd.Parameters.Add(new OracleParameter("name", p.getName()));
             cmd.Parameters.Add(new OracleParameter("refcomposition", p.getRefComposition()));
             cmd.Parameters.Add(new OracleParameter("refsizes", p.getRefSize()));
             cmd.Parameters.Add(new OracleParameter("price", p.getPrice()));
             cmd.Parameters.Add(new OracleParameter("amount", p.getAmount()));
-            cmd.Parameters.Add(new OracleParameter("deleted", 0));
 
             cmd.ExecuteNonQuery();
 
@@ -118,7 +114,7 @@ namespace ERP.Dominio.Manager
             connection.Close();
         }
 
-        public void deleteProduct(Product p)
+        public void deleteProduct(int idProduct)
         {
             OracleConnection connection;
             DataSet data = new DataSet();
@@ -128,7 +124,7 @@ namespace ERP.Dominio.Manager
             connection.Open();
 
             OracleCommand cmd = new OracleCommand("UPDATE PRODUCTS SET DELETED=1 WHERE IDPRODUCT=:idProduct", connection);
-            cmd.Parameters.Add(new OracleParameter("idProduct", p.getIdProduct()));
+            cmd.Parameters.Add(new OracleParameter("idProduct", idProduct));
 
             cmd.ExecuteNonQuery();
 
@@ -238,7 +234,85 @@ namespace ERP.Dominio.Manager
             refill(combo, sql, "--- Seleccionar --", "COMBOCOMPOSITION");
         }
 
+        public void refillAllCombos(int idProduct, ComboBox cboComposition, ComboBox cboSize)
+        {
+            string sql = "SELECT REFCOMPOSITION,REFSIZES FROM PRODUCTS WHERE IDPRODUCT=" + idProduct;
+
+            ConnectOracle cn = new ConnectOracle();
+            DataSet data = cn.getData(sql, "PRODUCTSREF");
+            DataTable ttable = data.Tables["PRODUCTSREF"];
+            DataRow row = ttable.Rows[0];
+
+            //cboComposition
+            for (int i = 0; i < cboComposition.Items.Count; i++)
+            {
+                DataRowView aux = (DataRowView)cboComposition.Items[i];
+
+                if (ttable.Rows[0]["REFCOMPOSITION"].ToString().Equals(aux.Row[0].ToString()))
+                {
+                    cboComposition.SelectedIndex = i;
+                }
+            }
+
+            //cboSize
+            for (int i = 0; i < cboSize.Items.Count; i++)
+            {
+                DataRowView aux = (DataRowView)cboSize.Items[i];
+
+                if (ttable.Rows[0]["REFSIZES"].ToString().Equals(aux.Row[0].ToString()))
+                {
+                    cboSize.SelectedIndex = i;
+                }
+            }
+        }
+
         //--------------------------------------------------------------------TAGS----------------------------------------------------------------------------------
+        public void loadTagsList(ListBox listOriginal, ListBox ListSelected, int idProduct)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle load = new ConnectOracle();
+            connection = load.getConnection();
+
+            connection.Open();
+
+            //All tags that customer has
+            OracleCommand cmd = new OracleCommand("SELECT T.NAME FROM TAGS T, TAGS_PRODUCTS TP WHERE T.IDTAG = TP.REFIDTAG AND TP.REFIDPRODUCT=:id", connection);
+            cmd.Parameters.Add(new OracleParameter("id", idProduct));
+
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            da.Fill(data, "tags");
+
+            connection.Close();
+            DataTable table = data.Tables["tags"];
+
+            //Load list selected
+            foreach (DataRow row in table.Rows)
+            {
+                ListSelected.Items.Add(row["NAME"]);
+            }
+
+            //Obtain all tags except that customer has
+            connection.Open();
+            cmd = new OracleCommand("SELECT NAME FROM TAGS WHERE TAGS.NAME NOT IN(SELECT T.NAME FROM TAGS T, TAGS_PRODUCTS TP WHERE T.IDTAG = TP.REFIDTAG AND TP.REFIDPRODUCT=:id)", connection);
+            cmd.Parameters.Add(new OracleParameter("id", idProduct));
+
+            cmd.ExecuteNonQuery();
+            da = new OracleDataAdapter(cmd);
+            data = new DataSet();
+            da.Fill(data, "tags");
+
+            connection.Close();
+            table = data.Tables["tags"];
+
+            foreach (DataRow row in table.Rows)
+            {
+                listOriginal.Items.Add(row["NAME"]);
+            }
+        }
+
+
         public void createTagProduct(int refIdTag, int refIdProduct)
         {
             OracleConnection connection;
@@ -316,8 +390,26 @@ namespace ERP.Dominio.Manager
                 tagSelected = item.ToString();
                 //Tag id
                 idTagSelected = obtainTagID(tagSelected);
-                //Insert on table TAGS_CUSTOMERS
+                //Insert on table TAGS_PRODUCTS
                 createTagProduct(idTagSelected, productID);
+            }
+        }
+
+        //Only for update Customers
+        public void update_tags_products(int idProduct, ItemCollection it)
+        {
+            //-------------Procedure TAGS--------------------
+            String tagSelected;
+            int idTagSelected;
+            //Obtain tags, search id and insert
+            foreach (object item in it)
+            {
+                //Tag selected
+                tagSelected = item.ToString();
+                //Tag id
+                idTagSelected = obtainTagID(tagSelected);
+                //Insert on table TAGS_PRODUCT
+                createTagProduct(idTagSelected, idProduct);
             }
         }
     }

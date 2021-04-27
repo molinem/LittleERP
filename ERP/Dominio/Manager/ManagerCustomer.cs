@@ -24,7 +24,7 @@ namespace ERP.Dominio.Manager
         {
             return table;
         }
-
+        //--------------------------------------------------------------------Read----------------------------------------------------------------------------------
         public void readAllCustomers()
         {
             OracleConnection connection;
@@ -90,6 +90,7 @@ namespace ERP.Dominio.Manager
             c.setZipCode(Convert.ToInt32(row["REFZIPCODESCITIES"]));
         }
 
+        //--------------------------------------------------------------------CRUD----------------------------------------------------------------------------------
         public void createCustomer(Customer c)
         {
             //Customer(String name, String dni, String surname, String address, int phone_number, String email, int zip_code)
@@ -158,8 +159,9 @@ namespace ERP.Dominio.Manager
             connection.Close();
         }
 
+        //--------------------------------------------------------------------ComboBox----------------------------------------------------------------------------------
 
-        public void refill(ComboBox combo,String sql,String first,String table)
+        public void refill(ComboBox combo, String sql, String first, String table)
         {
             OracleConnection connection;
             DataSet data = new DataSet();
@@ -181,7 +183,7 @@ namespace ERP.Dominio.Manager
                 DataRow newrow = ttablas.NewRow();
                 newrow[0] = 0;
                 newrow[1] = first;
-                ttablas.Rows.InsertAt(newrow, 0);               
+                ttablas.Rows.InsertAt(newrow, 0);
             }
 
             combo.ItemsSource = ttablas.AsDataView();
@@ -191,9 +193,6 @@ namespace ERP.Dominio.Manager
             connection.Close();
         }
 
-        
-
-        //--------------------------------------------------------------------ComboBox----------------------------------------------------------------------------------
         public void refillComboRegion(ComboBox combo)
         {
             String sql = "SELECT IDREGION, REGION FROM REGIONS ORDER BY IDREGION";
@@ -286,8 +285,8 @@ namespace ERP.Dominio.Manager
                     cp.SelectedIndex = i;
                 }
             }
-
         }
+
         //--------------------------------------------------------------------TAGS----------------------------------------------------------------------------------
         public void readAllTags()
         {

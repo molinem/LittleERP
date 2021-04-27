@@ -81,7 +81,7 @@
                                 FontSize="16"
                                 ScrollViewer.CanContentScroll="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="5,5,5,0" CanUserResizeRows="False" SelectionMode="Single" SelectionChanged="dgClientes_SelectionChanged">
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="5,5,5,0" CanUserResizeRows="False" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="IdCliente" Binding="{Binding IDCUSTOMER}" />
                                 <DataGridTextColumn Header="DNI" Binding="{Binding DNI}" />
@@ -124,10 +124,10 @@
                                 <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Name="btnAddProduct" Margin="5,0,0,0" Grid.Row="0" Grid.Column="0" Background="Transparent" Click="btnNewProduct_Click">
                                     <Image x:Name="btnNewProduct" Source="/Resources/add.png" />
                                 </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Name="btnModifyProduct" Margin="5,0,0,0" Grid.Row="0" Grid.Column="1" Background="Transparent">
+                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Name="btnModifyProduct" Margin="5,0,0,0" Grid.Row="0" Grid.Column="1" Background="Transparent" Click="btnModifyProduct_Click">
                                     <Image Source="/Resources/modify.png" />
                                 </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Name="btnDeleteProduct" Margin="5,0,0,0" Grid.Row="0" Grid.Column="2" Background="Transparent">
+                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Name="btnDeleteProduct" Margin="5,0,0,0" Grid.Row="0" Grid.Column="2" Background="Transparent" Click="btnDeleteProduct_Click">
                                     <Image Source="/Resources/remove.png" />
                                 </Button>
                             </Grid>
@@ -165,7 +165,7 @@
                                 FontSize="16"
                                 ScrollViewer.CanContentScroll="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="5,5,5,0" CanUserResizeRows="False" SelectionMode="Single" SelectionChanged="dgClientes_SelectionChanged">
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="5,5,5,0" CanUserResizeRows="False" SelectionMode="Single">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="IdProduct" Binding="{Binding IDPRODUCT}" />
                                 <DataGridTextColumn Header="Nombre" Binding="{Binding NAME}" />
