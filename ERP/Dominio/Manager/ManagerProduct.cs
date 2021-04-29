@@ -32,7 +32,7 @@ namespace ERP.Dominio.Manager
 
             connection.Open();
 
-            OracleCommand cmd = new OracleCommand("SELECT P.IDPRODUCT,P.NAME,C.COMPOSITION,S.SIZENAME,P.PRICE,P.AMOUNT FROM PRODUCTS P, COMPOSITIONS C, SIZES S WHERE P.REFCOMPOSITION = C.IDCOMPOSITION AND P.REFSIZES = S.IDSIZE AND P.DELETED = 0", connection);
+            OracleCommand cmd = new OracleCommand("SELECT P.IDPRODUCT,P.NAME,C.COMPOSITION,S.SIZENAME,P.PRICE,P.AMOUNT FROM PRODUCTS P, COMPOSITIONS C, SIZES S WHERE P.REFCOMPOSITION = C.IDCOMPOSITION AND P.REFSIZES = S.IDSIZE AND P.DELETED = 0 ORDER BY P.IDPRODUCT", connection);
             cmd.ExecuteNonQuery();
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             da.Fill(data, "products");
@@ -219,6 +219,40 @@ namespace ERP.Dominio.Manager
             readAllProducts();
             DataTable dtCustomers = obtainProducts();
             dgProduct.ItemsSource = dtCustomers.DefaultView;
+        }
+
+        //Search on DataGrid By name product
+        public void findByNameProductDatagrid(String name)
+        {
+            String sql = "SELECT P.IDPRODUCT,P.NAME,C.COMPOSITION,S.SIZENAME,P.PRICE,P.AMOUNT FROM PRODUCTS P, COMPOSITIONS C, SIZES S WHERE P.REFCOMPOSITION = C.IDCOMPOSITION AND P.REFSIZES = S.IDSIZE AND UPPER(P.NAME) LIKE '%" + name + "%' AND P.DELETED = 0 ORDER BY P.IDPRODUCT";
+            ConnectOracle cn = new ConnectOracle();
+            DataSet data = cn.getData(sql, "products");
+
+            table = data.Tables["products"];
+        }
+
+        public void searchByNameDataGridProduct(DataGrid dgProducts, String name)
+        {
+            findByNameProductDatagrid(name);
+            DataTable dtProductsSearch = obtainProducts();
+            dgProducts.ItemsSource = dtProductsSearch.DefaultView;
+        }
+
+        //Search on DataGrid By Composition product
+        public void findByCompositionProductDatagrid(String composition)
+        {
+            String sql = "SELECT P.IDPRODUCT,P.NAME,C.COMPOSITION,S.SIZENAME,P.PRICE,P.AMOUNT FROM PRODUCTS P, COMPOSITIONS C, SIZES S WHERE P.REFCOMPOSITION = C.IDCOMPOSITION AND P.REFSIZES = S.IDSIZE AND UPPER(C.COMPOSITION) LIKE '%" + composition + "%' AND P.DELETED = 0 ORDER BY P.IDPRODUCT";
+            ConnectOracle cn = new ConnectOracle();
+            DataSet data = cn.getData(sql, "products");
+
+            table = data.Tables["products"];
+        }
+
+        public void searchByCompositionDataGridProduct(DataGrid dgProducts, String composition)
+        {
+            findByCompositionProductDatagrid(composition);
+            DataTable dtProductsSearch = obtainProducts();
+            dgProducts.ItemsSource = dtProductsSearch.DefaultView;
         }
 
         //--------------------------------------------------------------------ComboBox----------------------------------------------------------------------------------
@@ -411,6 +445,26 @@ namespace ERP.Dominio.Manager
                 //Insert on table TAGS_PRODUCT
                 createTagProduct(idTagSelected, idProduct);
             }
+        }
+
+        public void updateTags(Product p, ItemCollection listTags)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle updateCustomer = new ConnectOracle();
+            connection = updateCustomer.getConnection();
+
+            connection.Open();
+
+            OracleCommand cmd = new OracleCommand("DELETE FROM TAGS_PRODUCTS WHERE REFIDPRODUCT=:idCustomer", connection);
+            cmd.Parameters.Add(new OracleParameter("idCustomer", p.getIdProduct()));
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            //Call insert tags (id product)
+            update_tags_products(p.getIdProduct(), listTags);
         }
     }
 }

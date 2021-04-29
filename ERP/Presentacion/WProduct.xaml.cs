@@ -70,6 +70,7 @@ namespace ERP
             Product.manager().refillComboComposition(cboCompositionProduct);
             Product.manager().refillComboSize(cboSizeProduct);
             Product.manager().refillAllCombos(idProduct, cboCompositionProduct, cboSizeProduct);
+
             Product.manager().loadTagsList(listTagsOriginal, listTagsSelected, idProduct);
         }
 
@@ -175,7 +176,7 @@ namespace ERP
                         Product.manager().modifyProduct(pModify);
 
                         //Tags for this product
-                        Product.manager().update_tags_products(idProductSelected,listTagsSelected.Items);
+                        Product.manager().updateTags(pModify, listTagsSelected.Items);
 
                         MessageBox.Show("Producto actualizado correctamente", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();

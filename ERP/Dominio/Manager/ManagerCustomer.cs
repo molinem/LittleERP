@@ -510,5 +510,23 @@ namespace ERP.Dominio.Manager
             DataTable dtCustomersSearch = obtainData();
             dgCustomers.ItemsSource = dtCustomersSearch.DefaultView;
         }
+
+
+        //Search on DataGrid By surname customer
+        public void findBySurnameDatagrid(String surname)
+        {
+            String sql = "SELECT C.IDCUSTOMER, C.DNI, C.NAME, C.SURNAME, C.ADDRESS, C.PHONE, C.EMAIL, S.STATE FROM CUSTOMERS C, ZIPCODESCITIES Z, STATES S WHERE C.REFZIPCODESCITIES = Z.IDZIPCODESCITIES AND Z.REFSTATE = S.IDSTATE AND UPPER(C.SURNAME) LIKE '%" + surname + "%' AND C.DELETED = 0 ORDER BY C.IDCUSTOMER";
+            ConnectOracle cn = new ConnectOracle();
+            DataSet data = cn.getData(sql, "customer");
+
+            table = data.Tables["customer"];
+        }
+
+        public void searchBySurnameDataGridCustomers(DataGrid dgCustomers, String surname)
+        {
+            findBySurnameDatagrid(surname);
+            DataTable dtCustomersSearch = obtainData();
+            dgCustomers.ItemsSource = dtCustomersSearch.DefaultView;
+        }
     }
 }

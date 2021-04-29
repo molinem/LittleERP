@@ -41,7 +41,8 @@ namespace ERP
             //Bug if you try to load on event tabControlSelectionChanged
             //Windows Load event -> works
         }
-        
+
+        //--------------------------------------------------------------------Customers----------------------------------------------------------------------------------
         private void btnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             //Option + for create new customer
@@ -103,13 +104,7 @@ namespace ERP
                 MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-
-        private void btnBusqueda_Click(object sender, RoutedEventArgs e)
-        {
-       
-        }
-
+    
 
         private void txtSearchByName(object sender, TextChangedEventArgs e)
         {
@@ -120,30 +115,26 @@ namespace ERP
             }
             else
             {
-
-                //String nameCustomer = txtFilterName.Text;
-                //Customer.manager().searchByNameDataGridCustomers(dgCustomer, nameCustomer);
-
-
-                //Other method
-                /*foreach (DataGridViewRow row in dgCustomer)
-                {
-                    //string cadFecha = (string)row.Cells[5].Value;
-                    //DateTime fecha = DateTime.ParseExact(cadFecha, "dd'/'MM'/'yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-
-                    CurrencyManager currencyManager1 = (CurrencyManager)dgCustomer.ItemsSource;
-                    currencyManager1.SuspendBinding();
-
-                    if (!txtFilterName.Text.ToString().Equals("") && !row.Cells[2].Value.ToString().Contains(txtFilterName.Text.ToString()))
-                    {
-                        row.Visible = false;
-                    }
-
-                    currencyManager1.ResumeBinding();
-                }*/
+                String nameCustomer = txtFilterName.Text.ToUpper();
+                Customer.manager().searchByNameDataGridCustomers(dgCustomer, nameCustomer);
             }
         }
 
+        private void txtSearchBySurname(object sender, TextChangedEventArgs e)
+        {
+            if (txtFilterSurname.Text.Contains("'"))
+            {
+                txtFilterSurname.Text = "";
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                String SurnameCustomer = txtFilterSurname.Text.ToUpper();
+                Customer.manager().searchBySurnameDataGridCustomers(dgCustomer, SurnameCustomer);
+            }
+        }
+
+        //--------------------------------------------------------------------Products----------------------------------------------------------------------------------
         //When tab products is loaded
         private void tabProducts_Loaded(object sender, RoutedEventArgs e)
         {
@@ -206,7 +197,35 @@ namespace ERP
             }
             else
             {
-                MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debes seleccionar un producto.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void txtSearchByNameProduct(object sender, TextChangedEventArgs e)
+        {
+            if (txtFilterNameProduct.Text.Contains("'"))
+            {
+                txtFilterNameProduct.Text = "";
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                String nameProduct = txtFilterNameProduct.Text.ToUpper();
+                Product.manager().searchByNameDataGridProduct(dgProducts, nameProduct);
+            }
+        }
+
+        private void txtSearchByCompositionProduct(object sender, TextChangedEventArgs e)
+        {
+            if (txtFilterCompositionProduct.Text.Contains("'"))
+            {
+                txtFilterCompositionProduct.Text = "";
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                String compositionProduct = txtFilterCompositionProduct.Text.ToUpper();
+                Product.manager().searchByCompositionDataGridProduct(dgProducts, compositionProduct);
             }
         }
     }

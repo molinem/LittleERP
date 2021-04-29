@@ -65,8 +65,8 @@
                                 <Label Name="lblFiltroApellidos" Content="APELLIDOS:" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Grid.Row="1" />
                             </Viewbox>
                             
-                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtFilterName" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="13" Width="345" MaxHeight="40" Margin="5,10,10,0"></TextBox>
-                            <TextBox Grid.Row="1" Grid.Column="1" Name="txtFiltroApellidos" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Width="345" MaxHeight="40" Margin="5,8,10,2"></TextBox>
+                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtFilterName" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="18" Width="345" MaxHeight="40" Margin="5,10,10,0" TextChanged="txtSearchByName"></TextBox>
+                            <TextBox Grid.Row="1" Grid.Column="1" Name="txtFilterSurname" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="18" Width="345" MaxHeight="40" Margin="5,8,10,2" TextChanged="txtSearchBySurname" ></TextBox>
                         </Grid>
                         <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="dgCustomer" AutoGenerateColumns="False"
                                 CanUserAddRows="False"
@@ -90,7 +90,7 @@
                                 <DataGridTextColumn Header="Dirección" Binding="{Binding ADDRESS}"/>
                                 <DataGridTextColumn Header="Teléfono" Binding="{Binding PHONE}"/>
                                 <DataGridTextColumn Header="Email" Binding="{Binding EMAIL}"/>
-                                <DataGridTextColumn Header="Ciudad" Binding="{Binding STATE}"/>
+                                <DataGridTextColumn Header="Provincia" Binding="{Binding STATE}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -143,14 +143,14 @@
                                 <ColumnDefinition Width="66*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Viewbox Stretch="Uniform" HorizontalAlignment="Left" MaxHeight="50">
-                                <Label Name="lblFilterName" Content="NOMBRE:" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Width="65" />
+                                <Label x:Name="lblFilterNameProduct" Content="NOMBRE:" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Width="65" />
                             </Viewbox>
                             <Viewbox Stretch="Uniform" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" MaxHeight="50">
-                                <Label Name="lblFilterTags" Content="TAGS:" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Grid.Row="1" />
+                                <Label x:Name="lblFilterComposition" Content="COMPOSICIÓN :" FontSize="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Grid.Row="1" />
                             </Viewbox>
 
-                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtFilterNameProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="13" Width="345" MaxHeight="40" Margin="5,10,10,0"></TextBox>
-                            <TextBox Grid.Row="1" Grid.Column="1" Name="txtFilterTagsProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Width="345" MaxHeight="40" Margin="5,8,10,2"></TextBox>
+                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtFilterNameProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="18" Width="345" MaxHeight="40" Margin="5,10,10,0" TextChanged="txtSearchByNameProduct"></TextBox>
+                            <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtFilterCompositionProduct" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="18" Width="345" MaxHeight="40" Margin="5,8,10,2" TextChanged="txtSearchByCompositionProduct"></TextBox>
                         </Grid>
                         <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="dgProducts" AutoGenerateColumns="False"
                                 CanUserAddRows="False"
