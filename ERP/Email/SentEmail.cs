@@ -19,8 +19,8 @@ namespace ERP.Email
 
         public SentEmail()
         {
-            user = "";
-            password = "";
+            user = "aquí user";
+            password = "aquí pass";
             server = "smtp.gmail.com";
             port = 587;
             client = new SmtpClient();
