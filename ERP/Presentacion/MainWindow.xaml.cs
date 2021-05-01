@@ -1,4 +1,5 @@
 ﻿using ERP.Dominio;
+using ERP.Email;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,8 @@ namespace ERP
         private int idCustomer;
         private int idProduct;
 
+        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,12 +40,11 @@ namespace ERP
             //Hide Column id
             this.dgCustomer.Columns[0].Visibility = Visibility.Hidden;
 
-
             //Bug if you try to load on event tabControlSelectionChanged
-            //Windows Load event -> works
+            //Working with Windows Load event
         }
 
-        //--------------------------------------------------------------------Customers----------------------------------------------------------------------------------
+    //--------------------------------------------------------------------Customers----------------------------------------------------------------------------------
         private void btnNewCustomer_Click(object sender, RoutedEventArgs e)
         {
             //Option + for create new customer
@@ -76,7 +78,7 @@ namespace ERP
             }
             else
             {
-                MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             
         }
@@ -101,7 +103,7 @@ namespace ERP
             }
             else 
             {
-                MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debes seleccionar un cliente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     
@@ -111,7 +113,7 @@ namespace ERP
             if (txtFilterName.Text.Contains("'"))
             {
                 txtFilterName.Text = "";
-                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -125,7 +127,7 @@ namespace ERP
             if (txtFilterSurname.Text.Contains("'"))
             {
                 txtFilterSurname.Text = "";
-                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -172,7 +174,7 @@ namespace ERP
             }
             else
             {
-                MessageBox.Show("Debes seleccionar un producto.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debes seleccionar un producto.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -197,7 +199,7 @@ namespace ERP
             }
             else
             {
-                MessageBox.Show("Debes seleccionar un producto.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debes seleccionar un producto.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -206,7 +208,7 @@ namespace ERP
             if (txtFilterNameProduct.Text.Contains("'"))
             {
                 txtFilterNameProduct.Text = "";
-                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -220,12 +222,29 @@ namespace ERP
             if (txtFilterCompositionProduct.Text.Contains("'"))
             {
                 txtFilterCompositionProduct.Text = "";
-                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No puedes usar símbolos como \' \" ?", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 String compositionProduct = txtFilterCompositionProduct.Text.ToUpper();
                 Product.manager().searchByCompositionDataGridProduct(dgProducts, compositionProduct);
+            }
+        }
+
+        //--------------------------------------------------------------------Sent Email Tags Products----------------------------------------------------------------------------------
+        private void btnSendEmail_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataRowView = (DataRowView)dgProducts.SelectedItem;
+            if (dataRowView != null)
+            {
+                idProduct = int.Parse(dataRowView.Row[0].ToString());
+                String nameProduct = dataRowView.Row[1].ToString();
+                Product.manager().sentOfferProduct(idProduct,nameProduct);
+                MessageBox.Show("Mensaje enviado correctamente.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Debes seleccionar un producto.", "LittleERP", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

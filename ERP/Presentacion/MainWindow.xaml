@@ -6,7 +6,7 @@
         xmlns:ge="clr-namespace:SourceChord.GridExtra;assembly=GridExtra.Wpf"
         xmlns:local="clr-namespace:ERP"
         mc:Ignorable="d"
-        Title="LittleERP" Height="450" Width="800"
+        Title="LittleERP" Height="450" Width="893"
         WindowState="Maximized">
 
     <DockPanel>
@@ -129,6 +129,10 @@
                                 </Button>
                                 <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Name="btnDeleteProduct" Margin="5,0,0,0" Grid.Row="0" Grid.Column="2" Background="Transparent" Click="btnDeleteProduct_Click">
                                     <Image Source="/Resources/remove.png" />
+                                </Button>
+
+                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Name="btnSendEmail" Margin="88,0,-80,0" Grid.Row="0" Grid.Column="2" Background="Transparent" Click="btnSendEmail_Click">
+                                    <Image Source="/Resources/send.png" />
                                 </Button>
                             </Grid>
                         </Viewbox>

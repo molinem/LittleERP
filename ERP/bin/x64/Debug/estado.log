@@ -1,0 +1,5 @@
+30/04/2021 01:49:53 Error al enviar email a luismolinadam@gmail.com System.Net.Mail.SmtpException El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.7.0 Authentication Required. Learn more at
+30/04/2021 01:51:40 Error al enviar email a luismolinadam@gmail.com System.Net.Mail.SmtpException El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.7.0 Authentication Required. Learn more at
+30/04/2021 01:54:06 Error al enviar email a luismolinadam@gmail.com System.Net.Mail.SmtpException El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.7.0 Authentication Required. Learn more at
+30/04/2021 01:55:57 Error al enviar email a luismolinadam@gmail.com System.Net.Mail.SmtpException Error al enviar correo.
+30/04/2021 01:58:22 Error al enviar email a luismolinadam@gmail.com System.Net.Mail.SmtpException Error al enviar correo.

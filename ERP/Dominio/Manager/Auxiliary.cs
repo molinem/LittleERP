@@ -221,7 +221,7 @@ namespace ERP.Dominio.Manager
             string email = txtEmail.Text;
             if (email != null)
             {
-                if (email.Length < 20)
+                if (email.Length < 30)
                 {
                     if (email.Contains("'"))
                     {

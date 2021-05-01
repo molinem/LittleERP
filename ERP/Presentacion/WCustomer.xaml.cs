@@ -41,7 +41,7 @@ namespace ERP
             txtAddress.MaxLength = 30;
             txtPhone.MaxLength = 9;
             txtDni.MaxLength = 9;
-            txtEmail.MaxLength = 20;
+            txtEmail.MaxLength = 30;
 
             Customer.manager().refillComboRegion(cboRegion);
             Customer.manager().startListTags(listTagsOriginal);
@@ -62,7 +62,7 @@ namespace ERP
             txtAddress.MaxLength = 30;
             txtPhone.MaxLength = 9;
             txtDni.MaxLength = 9;
-            txtEmail.MaxLength = 20;
+            txtEmail.MaxLength = 30;
 
             txtDni.Text = dni;
             txtName.Text = name;

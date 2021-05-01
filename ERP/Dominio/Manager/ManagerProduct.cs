@@ -1,4 +1,5 @@
-﻿using ERP.Persistencia;
+﻿using ERP.Email;
+using ERP.Persistencia;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -465,6 +466,56 @@ namespace ERP.Dominio.Manager
 
             //Call insert tags (id product)
             update_tags_products(p.getIdProduct(), listTags);
+        }
+
+        //--------------------------------------------------------------------Sent Email----------------------------------------------------------------------------------
+
+        public List<String> obtainTagsEmailCustomer(int idProduct)
+        {
+            OracleConnection connection;
+            DataSet data = new DataSet();
+            ConnectOracle load = new ConnectOracle();
+            connection = load.getConnection();
+
+            connection.Open();
+
+            //ID of tags that has product
+            OracleCommand cmd = new OracleCommand("SELECT C.EMAIL FROM TAGS_CUSTOMERS TC, TAGS_PRODUCTS TP, CUSTOMERS C WHERE TP.REFIDTAG = TC.REFIDTAG AND TP.REFIDPRODUCT=:id AND C.IDCUSTOMER = TC.REFIDCUSTOMER", connection);
+            cmd.Parameters.Add(new OracleParameter("id", idProduct));
+
+            cmd.ExecuteNonQuery();
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            da.Fill(data, "tags");
+
+            connection.Close();
+            DataTable table = data.Tables["tags"];
+
+            //List customer information
+            List<String> list_email = new List<String>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                list_email.Add(row["EMAIL"].ToString());
+                list_email.Add(",");
+            }
+            return list_email;
+        }
+        
+        public void sentOfferProduct(int idProduct, String nameProduct)
+        {
+            SentEmail email = new SentEmail();
+            //Obtain email customer  
+            List<String> list_email_customer = obtainTagsEmailCustomer(idProduct);
+
+            String list_email = "";
+
+            for (int i = 0; i < list_email_customer.Count()-1; i++)
+            {
+                list_email += list_email_customer.ElementAt(i);
+            }
+            
+            String message = "El producto -> <b>" + nameProduct + "</b> está en oferta, corre que vuela.";
+            email.sentMessage(list_email, "-- LittleERP --", message);
         }
     }
 }
