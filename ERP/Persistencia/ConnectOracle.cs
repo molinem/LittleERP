@@ -18,13 +18,14 @@ namespace ERP.Persistencia
         + "(CONNECT_DATA = (SERVICE_NAME = XE))); "
         + "User Id=ERP; Password=ERP;";
 
-
+	//Important method
         public OracleConnection getConnection() {
             OracleConnection objConnection;
             objConnection = new OracleConnection(driver);
             return objConnection;
         }
 
+	//Obtain all data form one table
         public DataSet getAllData(String table,String order)
         {
             OracleConnection connection;
@@ -45,6 +46,7 @@ namespace ERP.Persistencia
             return requestQuery;
         }
 
+	//Insert Data on one table
         public void insertData(String data, String table)
         {
             OracleConnection connection;
@@ -96,6 +98,7 @@ namespace ERP.Persistencia
             return result;
         }
 
+	//Obtain Data and return dataset
         public DataSet getData(String query, String table)
         {
             OracleConnection objConnection;
